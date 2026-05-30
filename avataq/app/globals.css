@@ -38,3 +38,33 @@ body {
   background: rgba(26, 23, 222, 0.5);
   border-radius: 999px;
 }
+
+/* Aurora background animations — transform-only so they run on the GPU compositor */
+@keyframes aurora-1 {
+  0%, 100% { transform: scale(1) translate(-40px, -30px); }
+  50%       { transform: scale(1.18) translate(50px, 40px); }
+}
+@keyframes aurora-2 {
+  0%, 100% { transform: scale(1.1) translate(40px, -15px); }
+  50%       { transform: scale(1) translate(-25px, 50px); }
+}
+@keyframes aurora-3 {
+  0%, 100% { transform: scale(1) translateY(0px); }
+  50%       { transform: scale(1.22) translateY(-40px); }
+}
+@keyframes aurora-4 {
+  0%, 100% { transform: scale(1) translateY(0px); }
+  50%       { transform: scale(1.3) translateY(60px); }
+}
+
+/* Floating particle animation */
+@keyframes particle-float {
+  0%, 100% { transform: translateY(-18px); opacity: 0.08; }
+  50%       { transform: translateY(18px);  opacity: 0.45; }
+}
+
+.aurora-1 { animation: aurora-1 26s ease-in-out infinite; }
+.aurora-2 { animation: aurora-2 22s ease-in-out infinite; }
+.aurora-3 { animation: aurora-3 20s ease-in-out infinite; }
+.aurora-4 { animation: aurora-4 18s ease-in-out infinite 4s; }
+.particle-float { animation: particle-float ease-in-out infinite; }

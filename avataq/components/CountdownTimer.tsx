@@ -29,9 +29,9 @@ function TimeUnit({ value, label }: { value: number; label: string }) {
           <AnimatePresence mode="wait">
             <motion.span
               key={value}
-              initial={{ y: -16, opacity: 0, filter: 'blur(6px)' }}
-              animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
-              exit={{ y: 16, opacity: 0, filter: 'blur(6px)' }}
+              initial={{ y: -12, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 12, opacity: 0 }}
               transition={{ type: 'spring', stiffness: 360, damping: 28 }}
               className="text-3xl sm:text-4xl md:text-[2.6rem] font-bold text-white tabular-nums"
             >
