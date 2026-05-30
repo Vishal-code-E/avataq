@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { X, ArrowRight, Check, Loader2, Mail } from 'lucide-react';
-import { AvataqLogo } from './AvataqLogo';
+import Image from 'next/image';
 
 interface WaitlistModalProps {
   isOpen: boolean;
@@ -17,7 +17,7 @@ export function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
   const [state, setState] = useState<FormState>('idle');
   const [error, setError] = useState('');
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const trimmed = email.trim();
     if (!trimmed || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
@@ -141,7 +141,7 @@ export function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
                     >
                       {/* Header */}
                       <div className="flex flex-col items-center text-center gap-4">
-                        <AvataqLogo size={52} />
+                        <Image src="/AVATAQ2logo.png" alt="AVATAQ Logo" width={72} height={72} style={{ height: 'auto' }} />
                         <div>
                           <h2 className="text-2xl font-bold text-white tracking-tight">
                             Join the Waitlist

@@ -30,7 +30,7 @@ export function BackgroundEffects() {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
       {/* Deep base */}
-      <div className="absolute inset-0 bg-[#030308]" />
+      <div className="absolute inset-0 bg-[#000000]" />
 
       {/* Aurora – top-left deep blue (CSS-animated, runs on compositor) */}
       <div
@@ -103,7 +103,7 @@ export function BackgroundEffects() {
         className="absolute inset-0"
         style={{
           background:
-            'radial-gradient(ellipse 80% 80% at 50% 50%, transparent 40%, rgba(3,3,8,0.7) 100%)',
+            'radial-gradient(ellipse 80% 80% at 50% 50%, transparent 40%, rgba(0,0,0,0.7) 100%)',
         }}
       />
 

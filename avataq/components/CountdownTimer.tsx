@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCountdown } from '@/hooks/useCountdown';
 
-const LAUNCH_DATE = new Date('2026-08-01T00:00:00');
+const LAUNCH_DATE = new Date('2026-06-04T00:00:00');
 
 function TimeUnit({ value, label }: { value: number; label: string }) {
   const display = String(value).padStart(2, '0');

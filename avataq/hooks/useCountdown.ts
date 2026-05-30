@@ -18,10 +18,13 @@ function calculate(targetDate: Date): CountdownValues {
   };
 }
 
+const ZERO: CountdownValues = { days: 0, hours: 0, minutes: 0, seconds: 0 };
+
 export function useCountdown(targetDate: Date): CountdownValues {
-  const [timeLeft, setTimeLeft] = useState<CountdownValues>(() => calculate(targetDate));
+  const [timeLeft, setTimeLeft] = useState<CountdownValues>(ZERO);
 
   useEffect(() => {
+    setTimeLeft(calculate(targetDate));
     const id = setInterval(() => setTimeLeft(calculate(targetDate)), 1000);
     return () => clearInterval(id);
   }, [targetDate]);
