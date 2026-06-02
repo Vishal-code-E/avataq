@@ -22,15 +22,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-theme="dark" className={inter.variable} suppressHydrationWarning>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `try{document.documentElement.dataset.theme=localStorage.getItem('aq-theme')||'dark';}catch(e){document.documentElement.dataset.theme='dark';}`,
-          }}
-        />
-      </head>
-      <body suppressHydrationWarning>{children}</body>
+    <html lang="en" data-theme="dark" className={inter.variable}>
+      <body>{children}</body>
     </html>
   );
 }

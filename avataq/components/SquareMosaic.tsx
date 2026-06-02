@@ -1,5 +1,10 @@
 "use client";
-import { useState, useEffect, CSSProperties } from "react";
+import { useSyncExternalStore, CSSProperties } from "react";
+
+function subscribeToResize(callback: () => void) {
+  window.addEventListener("resize", callback);
+  return () => window.removeEventListener("resize", callback);
+}
 
 const PALETTE: Record<string, string> = {
   blue: "#1a17de",
@@ -27,20 +32,14 @@ interface SquareMosaicProps {
 }
 
 function useMosaicDims(defaultSize: number) {
-  const compute = () => {
-    if (typeof window === "undefined") return { sz: defaultSize, visible: true };
-    const w = window.innerWidth;
-    if (w < 768) return { sz: defaultSize, visible: false };
-    if (w < 1280) return { sz: 90, visible: true };
-    return { sz: defaultSize, visible: true };
-  };
-  const [dims, setDims] = useState(compute);
-  useEffect(() => {
-    const handler = () => setDims(compute());
-    window.addEventListener("resize", handler);
-    return () => window.removeEventListener("resize", handler);
-  }, [defaultSize]);
-  return dims;
+  const width = useSyncExternalStore(
+    subscribeToResize,
+    () => window.innerWidth,
+    () => 0,
+  );
+  if (width === 0 || width < 768) return { sz: defaultSize, visible: false };
+  if (width < 1280) return { sz: 90, visible: true };
+  return { sz: defaultSize, visible: true };
 }
 
 export function SquareMosaic({

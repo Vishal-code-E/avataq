@@ -5,6 +5,7 @@ import { Hero } from "../components/Hero";
 import { Logos, Services, ValueProp, CaseStudies, Testimonials, FinalCTA } from "../components/Sections";
 import { Footer, StickyCTA } from "../components/Footer";
 import { useReveal } from "../hooks/useReveal";
+import { useTheme } from "../hooks/useTheme";
 
 const PAGE_ROUTES: Record<string, string> = {
   Services: "/services",
@@ -17,19 +18,10 @@ const PAGE_ROUTES: Record<string, string> = {
 export default function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [stickyVisible, setStickyVisible] = useState(false);
-  const [theme, setTheme] = useState<"dark" | "light">(() => {
-    if (typeof window === "undefined") return "dark";
-    try { return (localStorage.getItem("aq-theme") as "dark" | "light") || "dark"; } catch { return "dark"; }
-  });
-
-  useEffect(() => {
-    document.documentElement.dataset.theme = theme;
-    try { localStorage.setItem("aq-theme", theme); } catch { /* ignore */ }
-  }, [theme]);
+  const [theme, setTheme] = useTheme();
 
   useReveal(true, theme);
 
-  // sticky CTA logic
   useEffect(() => {
     const onScroll = () => {
       const past = window.scrollY > window.innerHeight * 0.7;
