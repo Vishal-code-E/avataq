@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Navbar, MobileMenu } from "../components/Navbar";
 import { Hero } from "../components/Hero";
-import { Logos, Services, ValueProp, CaseStudies, Testimonials, FinalCTA } from "../components/Sections";
+import { Logos, ProblemStatement, Services, ValueProp, CaseStudies, Testimonials, TechStack, FinalCTA } from "../components/Sections";
 import { Footer, StickyCTA } from "../components/Footer";
 import { useReveal } from "../hooks/useReveal";
 import { useTheme } from "../hooks/useTheme";
@@ -57,10 +57,12 @@ export default function HomePage() {
       <main>
         <Hero variant="canvas" onNav={onNav} />
         <Logos />
+        <ProblemStatement />
         <Services onNav={onNav} />
         <ValueProp />
         <CaseStudies onNav={onNav} />
         <Testimonials />
+        <TechStack />
         <FinalCTA onNav={onNav} />
       </main>
 

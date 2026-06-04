@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import {
-  Box, Workflow, BarChart3, Rocket,
+  Box, Workflow, BarChart3, Rocket, Plug2,
   Check, ArrowRight,
 } from "lucide-react";
 import { PageLayout } from "../../components/PageLayout";
@@ -67,6 +67,21 @@ const SERVICES = [
       "Growth dashboards",
     ],
     tech: ["Segment", "PostHog", "Feature flags", "A/B testing"],
+  },
+  {
+    id: "custom-integrations",
+    Icon: Plug2,
+    name: "Custom AI Integrations",
+    desc: "Already using tools you love? Good. We build custom integrations that make them smarter — connecting platforms like Shopify, HubSpot, Notion, Slack, Gmail, and dozens more into a unified, automated system.",
+    deliverables: [
+      "Integration architecture & mapping",
+      "Webhook & event orchestration",
+      "Data transformation pipelines",
+      "Authentication & security",
+      "Error handling & retries",
+      "Integration monitoring",
+    ],
+    tech: ["Shopify", "HubSpot", "Notion", "Slack", "Gmail", "REST APIs"],
   },
 ];
 

@@ -35,7 +35,7 @@ export function Footer({ onNav }: { onNav: (p: string) => void }) {
           </div>
           <div className="footer-col">
             <h4>Services</h4>
-            {["AI Agents", "Workflow Automation", "Data & Reporting Automation", "AI-Powered Customer Engagement"].map((l) => (
+            {["AI Agents", "Workflow Automation", "Data & Reporting Automation", "AI-Powered Customer Engagement", "Custom AI Integrations"].map((l) => (
               <a key={l} href="#" onClick={(e) => e.preventDefault()}>{l}</a>
             ))}
           </div>

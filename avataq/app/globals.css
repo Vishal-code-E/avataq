@@ -779,6 +779,13 @@ html[data-theme="light"] select.field{
 .checker{position:absolute;pointer-events:none;}
 .checker span{position:absolute;display:block;transition:background .3s var(--ease);}
 
+/* Problem statement two-col */
+@media(max-width:860px){ .prob-grid{grid-template-columns:1fr !important;gap:40px !important;} }
+
+/* Tech stack three-col */
+@media(max-width:860px){ .tech-stack-grid{grid-template-columns:1fr 1fr !important;} }
+@media(max-width:520px){ .tech-stack-grid{grid-template-columns:1fr !important;} }
+
 /* Page hero background */
 .page-hero{padding-top:168px;padding-bottom:72px;position:relative;overflow:hidden;}
 

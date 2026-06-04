@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Box, Workflow, BarChart3, Rocket, ArrowRight, Quote } from "lucide-react";
+import { Box, Workflow, BarChart3, Rocket, Plug2, ArrowRight, Quote } from "lucide-react";
 
 /* ② Logos marquee */
 export function Logos() {
@@ -24,12 +24,71 @@ export function Logos() {
   );
 }
 
+/* ② Problem Statement */
+const PAINS = [
+  "Manually sending invoices, reminders, and follow-up emails",
+  "Switching between tools that don't talk to each other",
+  "Answering the same customer questions over and over",
+  "Doing tasks at 11 PM that software should have done at 9 AM",
+  "Watching competitors move faster — and wondering how they do it",
+];
+
+export function ProblemStatement() {
+  return (
+    <section className="section section--panel">
+      <div className="wrap">
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1.1fr", gap: 72, alignItems: "start" }} className="prob-grid">
+          <div>
+            <div className="sec-head reveal">
+              <p className="eyebrow">The Problem</p>
+              <h2 className="h2">You&apos;re Working Harder Than You Should Have To.</h2>
+            </div>
+            <p className="lead reveal" style={{ marginTop: 28 }}>
+              Be honest with yourself for a moment. How much of your day looks like this:
+            </p>
+            <ul style={{ listStyle: "none", padding: 0, margin: "28px 0 0" }}>
+              {PAINS.map((p, i) => (
+                <li key={i} className="reveal" style={{ transitionDelay: `${i * 0.06}s`, display: "flex", alignItems: "flex-start", gap: 14, padding: "12px 0", borderBottom: "1px solid var(--line)" }}>
+                  <span style={{ width: 6, height: 6, background: "var(--blue)", borderRadius: 1, transform: "rotate(45deg)", flexShrink: 0, marginTop: 5 }} />
+                  <span className="body" style={{ color: "var(--on-muted)" }}>{p}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="reveal" style={{ transitionDelay: "0.15s" }}>
+            <blockquote style={{
+              borderLeft: "3px solid var(--blue)",
+              paddingLeft: 28,
+              margin: "0 0 36px",
+              fontWeight: 500,
+              fontSize: "clamp(17px,1.8vw,24px)",
+              lineHeight: 1.45,
+              letterSpacing: "-0.02em",
+              color: "var(--on)",
+              fontStyle: "italic",
+            }}>
+              &ldquo;Every hour spent on repetitive manual work is an hour not spent growing your business.&rdquo;
+            </blockquote>
+            <p className="body" style={{ marginBottom: 16 }}>
+              This isn&apos;t a personal failing. It&apos;s a systems problem. And it&apos;s costing you more than you realise — in revenue, in energy, and in the growth you&apos;re leaving on the table.
+            </p>
+            <p className="body">
+              The businesses scaling fastest today aren&apos;t working harder. They&apos;ve simply built smarter systems. That&apos;s exactly what AVATAQ does for you.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ③ Services */
 const SERVICES = [
   { icon: Box, title: "AI Agents", desc: "Meet your new always-on team member. Our AI agents handle customer queries, qualify leads, process requests, and take action — all without needing a coffee break or a salary increase." },
   { icon: Workflow, title: "Workflow Automation", desc: "Stop duct-taping your tools together. We build end-to-end automated workflows that connect your CRM, your inbox, your calendar, and your operations into one seamless system that just works." },
   { icon: BarChart3, title: "Data & Reporting Automation", desc: "Stop spending your Mondays building reports manually. We automate your data collection, transformation, and reporting so you walk in each morning with the numbers you need, ready and waiting." },
   { icon: Rocket, title: "AI-Powered Customer Engagement", desc: "Respond to every customer instantly — at 2 AM on a Sunday, if that's when they reach out. Personalised, intelligent, and always on-brand, without you being on call." },
+  { icon: Plug2, title: "Custom AI Integrations", desc: "Already using tools you love? Good. We build custom integrations that make them smarter — connecting platforms like Shopify, HubSpot, Notion, Slack, Gmail, and dozens more into a unified, automated system." },
 ];
 
 export function Services({ onNav }: { onNav: (p: string) => void }) {
@@ -41,7 +100,7 @@ export function Services({ onNav }: { onNav: (p: string) => void }) {
           <h2 className="h2">AI Agents and Workflow Automation, <em>Built Around Your Business</em>.</h2>
           <p className="lead">AVATAQ doesn&apos;t sell generic software. We build intelligent automation systems that plug directly into your existing workflow — no ripping out what works, just making it work a whole lot better.</p>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24, marginTop: 56 }} className="svc-grid">
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24, marginTop: 56 }} className="svc-grid">
           {SERVICES.map((s, i) => (
             <div className="card card--svc reveal" key={s.title} style={{ transitionDelay: `${i * 0.06}s` }}>
               <div className="ico-tile"><s.icon size={24} /></div>
@@ -53,6 +112,12 @@ export function Services({ onNav }: { onNav: (p: string) => void }) {
               </a>
             </div>
           ))}
+        </div>
+        <div className="reveal" style={{ marginTop: 48, display: "flex", justifyContent: "center" }}>
+          <a className="txtlink" href="#" style={{ fontSize: 15 }}
+            onClick={(e) => { e.preventDefault(); onNav("Services"); }}>
+            See What&apos;s Possible for Your Business <ArrowRight size={17} />
+          </a>
         </div>
       </div>
     </section>
@@ -211,7 +276,72 @@ export function Testimonials() {
   );
 }
 
-/* ⑦ Final CTA */
+/* ⑦ Tech Stack */
+const PLATFORMS = [
+  { name: "n8n", desc: "open-source workflow automation with full data privacy" },
+  { name: "Make (Integromat)", desc: "visual automation connecting 1,500+ apps" },
+  { name: "Zapier", desc: "rapid deployment for common business workflows" },
+];
+const AI_TOOLS = [
+  { name: "OpenAI (GPT-4o)", desc: "state-of-the-art language understanding and generation" },
+  { name: "Anthropic Claude", desc: "nuanced, reliable AI for complex reasoning tasks" },
+  { name: "Custom fine-tuned models", desc: "when your business needs something unique" },
+];
+const INTEGRATIONS = ["Shopify", "WooCommerce", "HubSpot", "Salesforce", "Notion", "Airtable", "Google Workspace", "Slack", "WhatsApp Business", "Typeform", "Stripe", "QuickBooks"];
+
+function ToolRow({ name, desc, last }: { name: string; desc: string; last?: boolean }) {
+  return (
+    <div style={{ display: "flex", gap: 14, padding: "14px 0", borderBottom: last ? "none" : "1px solid var(--line)" }}>
+      <span style={{ width: 5, height: 5, background: "var(--blue)", borderRadius: 1, transform: "rotate(45deg)", flexShrink: 0, marginTop: 7 }} />
+      <div>
+        <div style={{ fontWeight: 600, fontSize: 13, color: "var(--on)", marginBottom: 3 }}>{name}</div>
+        <div className="body" style={{ fontSize: 12 }}>{desc}</div>
+      </div>
+    </div>
+  );
+}
+
+export function TechStack() {
+  return (
+    <section className="section section--panel">
+      <div className="wrap">
+        <div className="sec-head reveal" style={{ marginBottom: 56 }}>
+          <p className="eyebrow">Under the hood</p>
+          <h2 className="h2">Built on Tools You Can <em>Trust</em>.</h2>
+          <p className="lead">We don&apos;t build our own proprietary black box. We use the industry&apos;s most reliable, battle-tested automation and AI platforms — and we make them work together brilliantly for your business.</p>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }} className="tech-stack-grid">
+          <div className="card reveal">
+            <p className="eyebrow" style={{ marginBottom: 20 }}>Automation Platforms</p>
+            {PLATFORMS.map((t, i) => <ToolRow key={t.name} name={t.name} desc={t.desc} last={i === PLATFORMS.length - 1} />)}
+          </div>
+          <div className="card reveal" style={{ transitionDelay: "0.08s" }}>
+            <p className="eyebrow" style={{ marginBottom: 20 }}>AI &amp; Intelligence</p>
+            {AI_TOOLS.map((t, i) => <ToolRow key={t.name} name={t.name} desc={t.desc} last={i === AI_TOOLS.length - 1} />)}
+          </div>
+          <div className="card reveal" style={{ transitionDelay: "0.16s" }}>
+            <p className="eyebrow" style={{ marginBottom: 20 }}>Integration Ecosystem</p>
+            <p className="body" style={{ marginBottom: 20 }}>We connect seamlessly with:</p>
+            <div className="tech-row">
+              {INTEGRATIONS.map((t) => (
+                <span className="tech-pill" key={t}>
+                  <span style={{ width: 5, height: 5, background: "var(--blue)", borderRadius: 1, transform: "rotate(45deg)", display: "inline-block" }} />
+                  {t}
+                </span>
+              ))}
+            </div>
+            <p className="body" style={{ marginTop: 20, fontStyle: "italic", color: "var(--on-faint)" }}>and hundreds more.</p>
+          </div>
+        </div>
+        <p className="body reveal" style={{ marginTop: 48, textAlign: "center", fontStyle: "italic", color: "var(--on-faint)", maxWidth: 580, margin: "48px auto 0" }}>
+          You don&apos;t need to understand any of this. You just need to know it works — and that we&apos;ve already made it work for businesses like yours.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+/* ⑧ Final CTA */
 export function FinalCTA({ onNav }: { onNav: (p: string) => void }) {
   return (
     <section className="final-cta section" style={{ padding: "120px 0" }}>

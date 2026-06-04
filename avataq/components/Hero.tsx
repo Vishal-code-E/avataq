@@ -79,11 +79,16 @@ function ProductCanvas({ compact }: { compact?: boolean }) {
 
 function HeroCTAs({ onNav }: { onNav: (p: string) => void }) {
   return (
-    <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
-      <button className="btn btn--primary" onClick={() => onNav("Contact")}>Book a Free Strategy Call</button>
-      <button className="btn btn--ghost" onClick={() => onNav("Case Studies")}>
-        Get a Free Automation Audit <ArrowRight size={18} />
-      </button>
+    <div style={{ display: "flex", flexDirection: "column", gap: 16, alignItems: "flex-start" }}>
+      <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
+        <button className="btn btn--primary" onClick={() => onNav("Contact")}>Book a Free Strategy Call</button>
+        <button className="btn btn--ghost" onClick={() => onNav("Case Studies")}>
+          Get a Free Automation Audit <ArrowRight size={18} />
+        </button>
+      </div>
+      <p style={{ margin: 0, fontSize: 13, color: "var(--on-faint)", fontStyle: "italic", letterSpacing: "0.01em" }}>
+        No tech background needed. No long onboarding. Just results.
+      </p>
     </div>
   );
 }

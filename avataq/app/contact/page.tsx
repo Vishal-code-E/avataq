@@ -31,6 +31,10 @@ const FAQS = [
     q: "How much does it cost?",
     a: "It depends on what you need — but we structure engagements to ensure the ROI is clear and measurable. Book a free audit and we'll give you a real, honest picture before you commit to anything.",
   },
+  {
+    q: "Is this only for large businesses?",
+    a: "Absolutely not. Our best results often come from small and mid-sized businesses where automation creates the most dramatic impact. If you have repetitive tasks, you're a perfect candidate.",
+  },
 ];
 
 function FaqItem({ q, a }: { q: string; a: string }) {
