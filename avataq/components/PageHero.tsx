@@ -1,20 +1,27 @@
 "use client";
 import { ChevronRight } from "lucide-react";
 import { SquareMosaic } from "./SquareMosaic";
+import { Checkerboard } from "./Checkerboard";
 
 interface PageHeroProps {
   eyebrow: string;
   title: React.ReactNode;
   sub?: string;
   breadcrumb?: string[];
+  checker?: boolean;
   children?: React.ReactNode;
 }
 
-export function PageHero({ eyebrow, title, sub, breadcrumb, children }: PageHeroProps) {
+export function PageHero({ eyebrow, title, sub, breadcrumb, checker, children }: PageHeroProps) {
   return (
     <section className="section--panel page-hero" style={{ overflow: "hidden", position: "relative" }}>
       <div className="blueprint" />
       <SquareMosaic />
+      {checker && (
+        <div style={{ position: "absolute", right: -80, top: 60, opacity: 0.5, zIndex: 0 }}>
+          <Checkerboard density="sparse" unit={100} />
+        </div>
+      )}
       <div
         className="hero-glow"
         style={{ left: "12%", top: 60, width: 420, height: 240, opacity: 0.45 }}

@@ -775,6 +775,10 @@ html[data-theme="light"] select.field{
 .cta-band{text-align:center;}
 .cta-band .h2{max-width:760px;margin:0 auto;}
 
+/* Checkerboard decoration */
+.checker{position:absolute;pointer-events:none;}
+.checker span{position:absolute;display:block;transition:background .3s var(--ease);}
+
 /* Page hero background */
 .page-hero{padding-top:168px;padding-bottom:72px;position:relative;overflow:hidden;}
 

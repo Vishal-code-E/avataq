@@ -56,6 +56,7 @@ export default function ContactPage() {
         eyebrow="Contact"
         title={<>Let&apos;s <em>talk</em>.</>}
         sub="Tell us about your project. We respond within 24 hours — and we'll tell you straight whether we're the right team for it."
+        checker
       />
 
       {/* Form + info */}
