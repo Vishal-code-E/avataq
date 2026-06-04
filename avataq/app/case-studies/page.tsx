@@ -10,8 +10,8 @@ type ArtKind = "flow" | "chart" | "grid" | "pulse" | "rings";
 const FILTERS = ["All", "Fintech", "Commerce", "Operations", "Data"] as const;
 
 const STUDIES: { tag: string; client: string; title: string; metric: string; kind: ArtKind }[] = [
-  { tag: "Fintech", client: "Cobalt", title: "An agent graph that cut manual review 82%", metric: "82% less manual review", kind: "flow" },
-  { tag: "Commerce", client: "Northwind", title: "Turning raw reviews into a live defect radar", metric: "4× faster defect triage", kind: "chart" },
+  { tag: "Local Services", client: "Home Services Co.", title: "AI agent eliminated every missed after-hours lead", metric: "40% more booked jobs", kind: "flow" },
+  { tag: "E-commerce", client: "Online Retailer", title: "End-to-end order and customer communication automated", metric: "+22% customer satisfaction", kind: "chart" },
   { tag: "Operations", client: "Meridian", title: "One observable graph for every back-office flow", metric: "11 workflows automated", kind: "grid" },
   { tag: "Data", client: "Lumen", title: "A semantic layer the whole company can query", metric: "60% fewer ad-hoc requests", kind: "pulse" },
   { tag: "Commerce", client: "Atlas Foods", title: "Lifecycle automation that compounds retention", metric: "+18% repeat purchase", kind: "rings" },
@@ -19,15 +19,15 @@ const STUDIES: { tag: string; client: string; title: string; metric: string; kin
 ];
 
 const FEATURED = {
-  tag: "Fintech",
-  client: "Cobalt",
-  title: "How Cobalt rebuilt risk review on an agent graph",
-  challenge: "A 9-person ops team was manually reviewing every flagged transaction — slow, inconsistent, and impossible to audit.",
-  approach: "We mapped the review workflow into one observable graph, then introduced classifier agents sharing a single policy kernel with human-in-the-loop escalation.",
+  tag: "Local Services",
+  client: "Home Services Co.",
+  title: "How a home services business stopped missing every after-hours lead",
+  challenge: "A growing home services company was losing leads because enquiries went unanswered after 6 PM. The owner was manually following up every morning — and still missing potential clients.",
+  approach: "AVATAQ deployed an AI agent that instantly responds to all enquiries, qualifies the lead, checks availability, and books the appointment — automatically, at any hour.",
   results: [
-    { num: "82%", label: "less manual review" },
-    { num: "6 wk", label: "to production" },
-    { num: "100%", label: "runs auditable" },
+    { num: "40%", label: "more booked jobs" },
+    { num: "12 hrs", label: "reclaimed per week" },
+    { num: "0", label: "after-hours leads missed" },
   ],
 };
 
@@ -39,8 +39,8 @@ function CaseCard({ s }: { s: typeof STUDIES[0] }) {
       </div>
       <div className="case-card-body">
         <span className="chip">{s.tag}</span>
-        <h3 className="h3" style={{ fontSize: 20 }}>{s.title}</h3>
-        <p style={{ color: "var(--blue)", fontWeight: 600, fontSize: 15, margin: 0 }}>{s.metric}</p>
+        <h3 className="h3" style={{ fontSize: 18 }}>{s.title}</h3>
+        <p style={{ color: "var(--blue)", fontWeight: 600, fontSize: 14, margin: 0 }}>{s.metric}</p>
         <span className="txtlink" style={{ marginTop: 4 }}>
           Read more <ArrowRight size={16} />
         </span>
@@ -82,7 +82,7 @@ export default function CaseStudiesPage() {
             </div>
             <div className="case-body">
               <span className="chip">{FEATURED.tag} · {FEATURED.client}</span>
-              <h2 className="h2" style={{ fontSize: "clamp(26px,2.8vw,38px)" }}>{FEATURED.title}</h2>
+              <h2 className="h2" style={{ fontSize: "clamp(22px,2.4vw,34px)" }}>{FEATURED.title}</h2>
               <div style={{ display: "flex", flexDirection: "column", gap: 14, marginTop: 4 }}>
                 <div>
                   <span className="eyebrow">Challenge</span>
@@ -96,7 +96,7 @@ export default function CaseStudiesPage() {
               <div style={{ display: "flex", gap: 32, marginTop: 12, flexWrap: "wrap" }}>
                 {FEATURED.results.map((r) => (
                   <div key={r.label}>
-                    <div style={{ fontWeight: 800, fontSize: 32, letterSpacing: "-0.04em", color: "var(--blue)" }}>{r.num}</div>
+                    <div style={{ fontWeight: 800, fontSize: 28, letterSpacing: "-0.04em", color: "var(--blue)" }}>{r.num}</div>
                     <div className="tag" style={{ marginTop: 4 }}>{r.label}</div>
                   </div>
                 ))}

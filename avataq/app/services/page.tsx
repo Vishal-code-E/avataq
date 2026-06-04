@@ -11,8 +11,8 @@ const SERVICES = [
   {
     id: "ai-systems",
     Icon: Box,
-    name: "AI Systems",
-    desc: "Production-grade agents that share a kernel — identity, memory, policy, and observability — so every model you ship inherits the same guardrails instead of reinventing them.",
+    name: "AI Agents",
+    desc: "Meet your new always-on team member. Our AI agents handle customer queries, qualify leads, process requests, and take action — all without needing a coffee break or a salary increase.",
     deliverables: [
       "Agent architecture & kernel design",
       "Retrieval and memory layers",
@@ -26,8 +26,8 @@ const SERVICES = [
   {
     id: "automation",
     Icon: Workflow,
-    name: "Automation",
-    desc: "We map every workflow your business runs on into one observable graph, then automate the paths that drain your team — with full traceability on each run.",
+    name: "Workflow Automation",
+    desc: "Stop duct-taping your tools together. We build end-to-end automated workflows that connect your CRM, your inbox, your calendar, and your operations into one seamless system that just works.",
     deliverables: [
       "Workflow discovery & mapping",
       "Event-driven orchestration",
@@ -41,8 +41,8 @@ const SERVICES = [
   {
     id: "data",
     Icon: BarChart3,
-    name: "Data & Analytics",
-    desc: "Pipelines and dashboards that turn raw signal into decisions — modeled cleanly so the same numbers power your agents, your reporting, and your team.",
+    name: "Data & Reporting Automation",
+    desc: "Stop spending your Mondays building reports manually. We automate your data collection, transformation, and reporting so you walk in each morning with the numbers you need, ready and waiting.",
     deliverables: [
       "Pipeline architecture",
       "Warehouse & semantic modeling",
@@ -56,8 +56,8 @@ const SERVICES = [
   {
     id: "growth",
     Icon: Rocket,
-    name: "Growth Engineering",
-    desc: "Instrumented funnels and experiment systems that compound — every test feeds a shared model of what moves your business, not a one-off slide.",
+    name: "AI-Powered Customer Engagement",
+    desc: "Respond to every customer instantly — at 2 AM on a Sunday, if that's when they reach out. Personalised, intelligent, and always on-brand, without you being on call.",
     deliverables: [
       "Event taxonomy & tracking",
       "Experimentation platform",
@@ -71,10 +71,10 @@ const SERVICES = [
 ];
 
 const PROCESS = [
-  { step: "01", name: "Discover", desc: "We map your workflows, data, and goals into a single system diagram." },
+  { step: "01", name: "Discover", desc: "We start with a deep-dive into your business — your workflows, your bottlenecks, your goals. No generic templates. We map exactly where automation creates the most leverage for you specifically." },
   { step: "02", name: "Design", desc: "We architect the kernel and the agent graph, with budgets and guardrails up front." },
-  { step: "03", name: "Build", desc: "We ship in tight increments — observable from the first run, not the last." },
-  { step: "04", name: "Scale", desc: "We harden, monitor, and hand over a system your team can extend with confidence." },
+  { step: "03", name: "Build", desc: "Our team gets to work. Using tools like n8n, Make, and custom AI agents built on OpenAI and other leading models, we build your automation system with precision. You review. We refine. Until it's exactly right." },
+  { step: "04", name: "Deploy", desc: "We go live. From day one, your business starts running leaner, faster, and smarter. We monitor the system, fix anything that needs fixing, and make sure you're confident using everything we've built." },
 ];
 
 function ServiceBlock({ s }: { s: typeof SERVICES[0] }) {
@@ -83,7 +83,7 @@ function ServiceBlock({ s }: { s: typeof SERVICES[0] }) {
       <div className="ico-tile ico-tile--lg">
         <s.Icon size={28} strokeWidth={1.8} />
       </div>
-      <h2 className="h2" style={{ marginTop: 24, fontSize: "clamp(28px,3vw,40px)" }}>{s.name}</h2>
+      <h2 className="h2" style={{ marginTop: 24, fontSize: "clamp(24px,2.6vw,36px)" }}>{s.name}</h2>
       <p className="lead" style={{ marginTop: 16, maxWidth: 720 }}>{s.desc}</p>
       <p className="eyebrow" style={{ marginTop: 32 }}>Key deliverables</p>
       <ul className="checklist">
@@ -163,8 +163,8 @@ export default function ServicesPage() {
         <div className="wrap">
           <div className="sec-head reveal">
             <p className="eyebrow">How we work</p>
-            <h2 className="h2">A process built like <em>infrastructure</em>.</h2>
-            <p className="lead">Every engagement runs on the same four steps — predictable, observable, and handed over clean.</p>
+            <h2 className="h2">Simple by Design. <em>Powerful in Practice.</em></h2>
+            <p className="lead">Most business owners expect automation to be complicated. We&apos;ve designed the entire experience to be the opposite.</p>
           </div>
           <div className="timeline">
             {PROCESS.map((p, i) => (
@@ -183,7 +183,7 @@ export default function ServicesPage() {
           <p className="eyebrow no-rule" style={{ justifyContent: "center", display: "flex" }}>Not sure which fits?</p>
           <h2 className="h2" style={{ marginTop: 20 }}>Tell us the problem. We&apos;ll scope the <em>system</em>.</h2>
           <div style={{ marginTop: 36, display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
-            <a className="btn btn--primary" href="/contact">Book a free consultation</a>
+            <a className="btn btn--primary" href="/contact">Start Your Discovery Session</a>
             <a className="btn btn--ghost" href="/case-studies" style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
               View Our Work <ArrowRight size={18} />
             </a>

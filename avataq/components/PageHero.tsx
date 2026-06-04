@@ -38,7 +38,7 @@ export function PageHero({ eyebrow, title, sub, breadcrumb, checker, children }:
           </nav>
         )}
         <p className="eyebrow reveal" style={{ marginTop: breadcrumb ? 24 : 0 }}>{eyebrow}</p>
-        <h1 className="h1 reveal" style={{ marginTop: 24, fontSize: "clamp(40px,6vw,76px)" }}>
+        <h1 className="h1 reveal" style={{ marginTop: 24, fontSize: "clamp(36px,5.5vw,68px)" }}>
           {title}
         </h1>
         {sub && (

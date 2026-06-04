@@ -80,9 +80,9 @@ function ProductCanvas({ compact }: { compact?: boolean }) {
 function HeroCTAs({ onNav }: { onNav: (p: string) => void }) {
   return (
     <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
-      <button className="btn btn--primary" onClick={() => onNav("Contact")}>Book a Demo</button>
+      <button className="btn btn--primary" onClick={() => onNav("Contact")}>Book a Free Strategy Call</button>
       <button className="btn btn--ghost" onClick={() => onNav("Case Studies")}>
-        View Our Work <ArrowRight size={18} />
+        Get a Free Automation Audit <ArrowRight size={18} />
       </button>
     </div>
   );
@@ -90,9 +90,9 @@ function HeroCTAs({ onNav }: { onNav: (p: string) => void }) {
 
 const HERO_COPY = {
   eyebrow: "AI-native systems studio",
-  h1a: (<>The operating system for <em>AI-native</em> business.</>),
-  h1b: (<>We build the systems<br />that <em>run themselves</em>.</>),
-  sub: "An OS — not a stack of disconnected automation. Agents share a kernel: identity, policy, observability, and a graph of every workflow your business runs on.",
+  h1a: (<>Your Business Runs on Hard Work. Imagine if It Also Ran on <em>Autopilot</em>.</>),
+  h1b: (<>Your Business Runs on Hard Work.<br />Imagine if It Also Ran on <em>Autopilot</em>.</>),
+  sub: "You started your business to build something great — not to spend your days chasing follow-ups, copying data between spreadsheets, or manually handling tasks that should have been automated years ago. AVATAQ brings AI-powered automation to businesses like yours, so you can focus on what you actually love doing.",
 };
 
 function HeroCanvas({ onNav }: { onNav: (p: string) => void }) {
@@ -148,7 +148,7 @@ function HeroSplit({ onNav }: { onNav: (p: string) => void }) {
         }}>
           <div style={{ position: "relative", zIndex: 2 }}>
             <p className="eyebrow reveal">{HERO_COPY.eyebrow}</p>
-            <h1 className="h1 reveal" style={{ marginTop: 24, fontSize: "clamp(40px,5.4vw,68px)" }}>{HERO_COPY.h1b}</h1>
+            <h1 className="h1 reveal" style={{ marginTop: 24, fontSize: "clamp(36px,5vw,62px)" }}>{HERO_COPY.h1b}</h1>
             <p className="lead reveal" style={{ marginTop: 26, maxWidth: 520 }}>{HERO_COPY.sub}</p>
             <div className="reveal" style={{ marginTop: 36 }}><HeroCTAs onNav={onNav} /></div>
           </div>

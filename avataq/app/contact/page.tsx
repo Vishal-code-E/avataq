@@ -12,24 +12,24 @@ const INFO = [
 
 const FAQS = [
   {
-    q: "How long does a typical engagement take?",
-    a: "Most first systems reach production in 6–10 weeks. We work in tight increments, so you see something observable within the first two weeks — not at the end.",
+    q: "Do I need to be technical to work with AVATAQ?",
+    a: "Not even slightly. We handle everything technical. Your job is to tell us how your business runs and what's frustrating you. We take it from there.",
   },
   {
-    q: "Do we own the system you build?",
-    a: "Always. We design to hand over: clean architecture, documentation, and a system your own team can run and extend without depending on us.",
+    q: "Will this disrupt my existing operations?",
+    a: "No. We build around what's already working. Automation goes in alongside your current setup — enhancing it, not replacing it. Most clients see zero disruption during the build phase.",
   },
   {
-    q: "What does pricing look like?",
-    a: "We scope each engagement to the problem — fixed-scope builds or ongoing partnerships. After a free consultation we send a clear proposal with milestones and budgets.",
+    q: "How quickly will I see results?",
+    a: "Most clients are fully live within 2–4 weeks. Many report measurable time savings and improved customer response rates within the very first month of deployment.",
   },
   {
-    q: "Which industries do you work with?",
-    a: "We've shipped across fintech, commerce, operations, and data teams. The common thread is workflows worth turning into a real system — not the industry.",
+    q: "What if something breaks or needs updating?",
+    a: "We don't disappear after go-live. Every engagement includes ongoing support, monitoring, and maintenance. If something needs adjusting, we fix it — fast.",
   },
   {
-    q: "Can you work alongside our internal team?",
-    a: "Yes. We embed with your engineers, share the kernel and observability from day one, and leave them fully equipped to own what we build together.",
+    q: "How much does it cost?",
+    a: "It depends on what you need — but we structure engagements to ensure the ROI is clear and measurable. Book a free audit and we'll give you a real, honest picture before you commit to anything.",
   },
 ];
 
@@ -112,13 +112,13 @@ export default function ContactPage() {
                     </span>
                     <div>
                       <div className="tag">{item.label}</div>
-                      <div style={{ fontWeight: 600, fontSize: 16, marginTop: 2 }}>{item.value}</div>
+                      <div style={{ fontWeight: 600, fontSize: 14, marginTop: 2 }}>{item.value}</div>
                     </div>
                   </div>
                 ))}
               </div>
               <div className="card" style={{ marginTop: 24 }}>
-                <h3 className="h3" style={{ fontSize: 20 }}>We respond within 24 hours</h3>
+                <h3 className="h3" style={{ fontSize: 18 }}>We respond within 24 hours</h3>
                 <p className="body" style={{ marginTop: 12 }}>
                   A senior engineer reads every inquiry — not a sales bot. Expect a real reply with real questions about your system.
                 </p>
@@ -145,7 +145,7 @@ export default function ContactPage() {
           <div className="embed-ph reveal">
             <Calendar size={40} strokeWidth={1.5} style={{ color: "var(--blue)" }} />
             <div>
-              <h3 className="h3" style={{ fontSize: 20 }}>Scheduling embed</h3>
+              <h3 className="h3" style={{ fontSize: 18 }}>Scheduling embed</h3>
               <p className="body" style={{ marginTop: 8, maxWidth: 420 }}>
                 Your Calendly (or preferred booking tool) drops in here — pick a slot and we&apos;ll send a calendar invite.
               </p>

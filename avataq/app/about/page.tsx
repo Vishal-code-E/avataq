@@ -98,7 +98,7 @@ export default function AboutPage() {
                 <div className="team-photo">
                   <User size={40} strokeWidth={1.5} />
                 </div>
-                <h3 className="h3" style={{ fontSize: 20 }}>{m.name}</h3>
+                <h3 className="h3" style={{ fontSize: 18 }}>{m.name}</h3>
                 <div className="role">{m.role}</div>
                 <a className="team-li" href="#" aria-label={m.name + " on LinkedIn"} onClick={(e) => e.preventDefault()}>
                   <ExternalLink size={18} strokeWidth={1.8} />

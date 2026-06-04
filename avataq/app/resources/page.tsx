@@ -34,7 +34,7 @@ function ArticleCard({ a }: { a: typeof ARTICLES[0] }) {
       </div>
       <div className="art-body">
         <span className="chip chip--solid" style={{ alignSelf: "flex-start" }}>{a.cat}</span>
-        <h3 className="h3" style={{ fontSize: 19 }}>{a.title}</h3>
+        <h3 className="h3" style={{ fontSize: 17 }}>{a.title}</h3>
         <span className="art-meta">{a.meta}</span>
       </div>
     </a>
@@ -70,7 +70,7 @@ export default function ResourcesPage() {
             </div>
             <div className="feat-body">
               <span className="chip chip--solid" style={{ alignSelf: "flex-start" }}>{FEATURED.cat}</span>
-              <h2 className="h2" style={{ fontSize: "clamp(26px,2.8vw,38px)" }}>{FEATURED.title}</h2>
+              <h2 className="h2" style={{ fontSize: "clamp(22px,2.4vw,34px)" }}>{FEATURED.title}</h2>
               <p className="lead">{FEATURED.excerpt}</p>
               <span className="art-meta" style={{ marginTop: 0 }}>{FEATURED.meta}</span>
               <a className="txtlink" href="#" onClick={(e) => e.preventDefault()}>

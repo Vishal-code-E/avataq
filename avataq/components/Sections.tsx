@@ -10,7 +10,7 @@ export function Logos() {
     <section className="section section--panel" style={{ paddingTop: 64, paddingBottom: 64 }}>
       <div className="wrap reveal">
         <p className="eyebrow eyebrow--muted no-rule" style={{ justifyContent: "center", textAlign: "center", display: "flex", marginBottom: 40 }}>
-          Trusted by teams shipping AI-native systems
+          Trusted by founders, operators, and growing teams
         </p>
       </div>
       <div className="marquee">
@@ -26,10 +26,10 @@ export function Logos() {
 
 /* ③ Services */
 const SERVICES = [
-  { icon: Box, title: "AI Systems", desc: "Production agents with a shared kernel — identity, memory, and policy." },
-  { icon: Workflow, title: "Automation", desc: "Wire every workflow into one observable graph that runs itself." },
-  { icon: BarChart3, title: "Data & Analytics", desc: "Pipelines and dashboards that turn raw signal into decisions." },
-  { icon: Rocket, title: "Growth Engineering", desc: "Instrumented funnels and experiments that compound over time." },
+  { icon: Box, title: "AI Agents", desc: "Meet your new always-on team member. Our AI agents handle customer queries, qualify leads, process requests, and take action — all without needing a coffee break or a salary increase." },
+  { icon: Workflow, title: "Workflow Automation", desc: "Stop duct-taping your tools together. We build end-to-end automated workflows that connect your CRM, your inbox, your calendar, and your operations into one seamless system that just works." },
+  { icon: BarChart3, title: "Data & Reporting Automation", desc: "Stop spending your Mondays building reports manually. We automate your data collection, transformation, and reporting so you walk in each morning with the numbers you need, ready and waiting." },
+  { icon: Rocket, title: "AI-Powered Customer Engagement", desc: "Respond to every customer instantly — at 2 AM on a Sunday, if that's when they reach out. Personalised, intelligent, and always on-brand, without you being on call." },
 ];
 
 export function Services({ onNav }: { onNav: (p: string) => void }) {
@@ -38,8 +38,8 @@ export function Services({ onNav }: { onNav: (p: string) => void }) {
       <div className="wrap">
         <div className="sec-head reveal">
           <p className="eyebrow">What we do</p>
-          <h2 className="h2">Capabilities, engineered as <em>one system</em>.</h2>
-          <p className="lead">Four disciplines that share a kernel — so what we build for you compounds instead of fragmenting.</p>
+          <h2 className="h2">AI Agents and Workflow Automation, <em>Built Around Your Business</em>.</h2>
+          <p className="lead">AVATAQ doesn&apos;t sell generic software. We build intelligent automation systems that plug directly into your existing workflow — no ripping out what works, just making it work a whole lot better.</p>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24, marginTop: 56 }} className="svc-grid">
           {SERVICES.map((s, i) => (
@@ -136,8 +136,8 @@ function CaseMedia({ kind }: { kind: string }) {
 }
 
 const CASES = [
-  { tag: "Fintech · Ops", title: "Cobalt cut manual review by 82% with an agent graph", metric: "82% less manual review · 6-week build", kind: "flow" },
-  { tag: "Commerce", title: "Northwind turned raw reviews into a defect radar", metric: "4× faster defect triage · live dashboards", kind: "chart" },
+  { tag: "Local Services", title: "AI agent eliminated every missed after-hours lead for a home services company", metric: "40% more booked jobs · 12 hrs/week reclaimed", kind: "flow" },
+  { tag: "E-commerce", title: "E-commerce brand automated order-to-delivery communication end-to-end", metric: "3 hrs/day saved · +22% customer satisfaction", kind: "chart" },
 ];
 
 export function CaseStudies({ onNav }: { onNav: (p: string) => void }) {
@@ -146,7 +146,7 @@ export function CaseStudies({ onNav }: { onNav: (p: string) => void }) {
       <div className="wrap">
         <div className="sec-head reveal" style={{ marginBottom: 56 }}>
           <p className="eyebrow">Selected work</p>
-          <h2 className="h2">Systems in production, <em>measured in outcomes</em>.</h2>
+          <h2 className="h2">Real Businesses. <em>Real Results.</em></h2>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
           {CASES.map((c) => (
@@ -155,8 +155,8 @@ export function CaseStudies({ onNav }: { onNav: (p: string) => void }) {
               <CaseMedia kind={c.kind} />
               <div className="case-body">
                 <span className="tag">{c.tag}</span>
-                <h3 className="h2" style={{ fontSize: "clamp(26px,2.6vw,34px)" }}>{c.title}</h3>
-                <p className="lead" style={{ color: "var(--blue)", fontWeight: 600, fontSize: 16 }}>{c.metric}</p>
+                <h3 className="h2" style={{ fontSize: "clamp(22px,2.2vw,30px)" }}>{c.title}</h3>
+                <p className="lead" style={{ color: "var(--blue)", fontWeight: 600, fontSize: 14 }}>{c.metric}</p>
                 <span className="txtlink" style={{ marginTop: 8 }}>
                   Read case study <ArrowRight size={16} />
                 </span>
@@ -171,9 +171,9 @@ export function CaseStudies({ onNav }: { onNav: (p: string) => void }) {
 
 /* ⑥ Testimonials */
 const QUOTES = [
-  { quote: (<>AVATAQ didn&apos;t hand us scripts — they handed us a <em>system</em>. Six weeks in, our ops team stopped firefighting.</>), name: "Dana Okafor", role: "VP Operations, Cobalt" },
-  { quote: (<>The graph they built shows us <em>every workflow</em> in one place. We finally trust our automation.</>), name: "Marc Reyes", role: "CTO, Northwind" },
-  { quote: (<>They think like infrastructure engineers and ship like a product team. <em>Rare combination.</em></>), name: "Priya Anand", role: "Head of Data, Lumen" },
+  { quote: (<>I was skeptical that AI could actually help a business like mine. Within three weeks of working with AVATAQ, I had systems running that I didn&apos;t even know were possible. My team is happier, my customers are getting faster responses, and <em>I&apos;m sleeping better.</em></>), name: "Priya R.", role: "Founder — Retail Brand" },
+  { quote: (<>AVATAQ didn&apos;t just automate our workflows. They made us look at how we were running the business differently. <em>The ROI was real and fast</em> — I wish we&apos;d done this two years ago.</>), name: "Marcus T.", role: "Director — Marketing Agency" },
+  { quote: (<>I kept thinking automation was for big companies with tech teams. AVATAQ showed me it&apos;s for businesses <em>exactly like mine.</em> The whole process was smooth, and they were genuinely invested in our success.</>), name: "Sunita M.", role: "Owner — Healthcare Services" },
 ];
 
 export function Testimonials() {
@@ -195,7 +195,7 @@ export function Testimonials() {
           <Quote size={40} style={{ color: "var(--blue)", marginBottom: 24 }} />
           <blockquote className="quote" style={{ margin: 0 }} key={idx}>{q.quote}</blockquote>
           <div style={{ marginTop: 36, display: "flex", flexDirection: "column", gap: 4, alignItems: "center" }}>
-            <span style={{ fontWeight: 600, fontSize: 16 }}>{q.name}</span>
+            <span style={{ fontWeight: 600, fontSize: 14 }}>{q.name}</span>
             <span className="tag">{q.role}</span>
           </div>
         </div>
@@ -216,12 +216,12 @@ export function FinalCTA({ onNav }: { onNav: (p: string) => void }) {
   return (
     <section className="final-cta section" style={{ padding: "120px 0" }}>
       <div className="wrap reveal" style={{ position: "relative", zIndex: 2, textAlign: "center", maxWidth: 880 }}>
-        <h2 className="h2" style={{ color: "#fff" }}>Ready to run your business on a system that runs itself?</h2>
-        <p style={{ color: "rgba(255,255,255,0.78)", fontSize: "clamp(17px,1.5vw,20px)", lineHeight: 1.55, marginTop: 24 }}>
-          Book a demo and we&apos;ll map your first agent graph in 30 minutes.
+        <h2 className="h2" style={{ color: "#fff" }}>Your Business Deserves to Run Like a <em>Well-Oiled Machine</em>.</h2>
+        <p style={{ color: "rgba(255,255,255,0.78)", fontSize: "clamp(15px,1.3vw,18px)", lineHeight: 1.55, marginTop: 24 }}>
+          You&apos;ve spent years building something worth automating. Now it&apos;s time to make it work as hard as you do — even when you&apos;re not in the room.
         </p>
         <div style={{ marginTop: 40, display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
-          <button className="btn btn--on-blue" onClick={() => onNav("Contact")}>Book a Demo</button>
+          <button className="btn btn--on-blue" onClick={() => onNav("Contact")}>Book a Free Audit</button>
           <button className="btn btn--ghost" style={{ borderColor: "rgba(255,255,255,0.5)" }} onClick={() => onNav("Case Studies")}>
             View Our Work <ArrowRight size={18} />
           </button>
