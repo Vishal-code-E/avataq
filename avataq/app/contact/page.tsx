@@ -6,8 +6,8 @@ import { PageHero } from "../../components/PageHero";
 
 const INFO = [
   { Icon: Mail, label: "Email", value: "hello@avataq.com" },
-  { Icon: Phone, label: "Phone", value: "+1 (000) 000-0000" },
-  { Icon: MapPin, label: "Location", value: "San Francisco · Remote" },
+  { Icon: Phone, label: "Phone", value: "+91 96740 29006 , +91 90598 82468" },
+  { Icon: MapPin, label: "Location", value: "India · Remote" },
 ];
 
 const FAQS = [
