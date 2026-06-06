@@ -690,6 +690,10 @@ html[data-theme="light"] .aqdrawer__themerow span{ color:rgba(0,0,0,0.6); }
 .team-card .role{font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue);margin-top:6px;}
 .team-li{margin-top:16px;color:var(--on-faint);transition:color .2s var(--ease);display:inline-flex;}
 .team-card:hover .team-li{color:var(--on);}
+.team-photo--circle{border-radius:50%;width:200px;height:200px;margin:0 auto 20px;aspect-ratio:unset;}
+.team-socials{display:flex;gap:14px;margin-top:16px;}
+.team-social-icon{color:var(--on-faint);transition:color .2s var(--ease);display:inline-flex;}
+.team-social-icon:hover{color:var(--blue);}
 
 /* Milestones on blue */
 .milestones{background:var(--blue);position:relative;overflow:hidden;}

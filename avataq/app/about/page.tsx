@@ -1,5 +1,6 @@
 "use client";
-import { Layers, Activity, Shield, Package, User, ExternalLink, ArrowRight } from "lucide-react";
+import Image from "next/image";
+import { Layers, Activity, Shield, Package, ArrowRight, Mail } from "lucide-react";
 import { PageLayout } from "../../components/PageLayout";
 import { PageHero } from "../../components/PageHero";
 
@@ -11,10 +12,10 @@ const VALUES = [
 ];
 
 const TEAM = [
-  { name: "Aria Vance", role: "Founder & CEO" },
-  { name: "Tobias Lund", role: "Head of Engineering" },
-  { name: "Mei Chen", role: "Principal Architect" },
-  { name: "Daniel Roy", role: "Head of Data" },
+  { name: "E Sri Ram", title: "CEO", photo: "/team/vishal.png", instagram: "#", linkedin: "#", email: "sriram@avataq.in" },
+  { name: "GV Santosh", title: "CTO", photo: "/team/santosh.png", instagram: "#", linkedin: "#", email: "santosh@avataq.in" },
+  { name: "I Sree Venkatanadh", title: "CMO", photo: "/team/venkatanadh.png", instagram: "#", linkedin: "#", email: "venkatanadh@avataq.in" },
+  { name: "P Sai Pawan", title: "COO/CFO", photo: "/team/pawan.jpg", instagram: "#", linkedin: "#", email: "pawan@avataq.in" },
 ];
 
 const MILESTONES = [
@@ -53,10 +54,12 @@ export default function AboutPage() {
             </div>
             <div className="visual-ph reveal">
               <div className="blueprint" />
-              <img
+              <Image
                 src="/avataq-mark-white.webp"
                 alt="AVATAQ mark"
-                style={{ width: 120, opacity: 0.9, position: "relative", zIndex: 2 }}
+                width={120}
+                height={120}
+                style={{ opacity: 0.9, position: "relative", zIndex: 2 }}
               />
               <span className="ph-label">Brand mark · isometric &quot;A&quot;</span>
             </div>
@@ -95,14 +98,26 @@ export default function AboutPage() {
           <div className="team-grid">
             {TEAM.map((m, i) => (
               <div className="team-card reveal" key={m.name} style={{ transitionDelay: i * 0.06 + "s" }}>
-                <div className="team-photo">
-                  <User size={40} strokeWidth={1.5} />
+                <div className="team-photo team-photo--circle">
+                  <Image src={m.photo} alt={m.name} width={200} height={200} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                 </div>
                 <h3 className="h3" style={{ fontSize: 18 }}>{m.name}</h3>
-                <div className="role">{m.role}</div>
-                <a className="team-li" href="#" aria-label={m.name + " on LinkedIn"} onClick={(e) => e.preventDefault()}>
-                  <ExternalLink size={18} strokeWidth={1.8} />
-                </a>
+                <div className="role">{m.title}</div>
+                <div className="team-socials">
+                  <a href={m.instagram} aria-label={m.name + " on Instagram"} className="team-social-icon" target="_blank" rel="noopener noreferrer">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                    </svg>
+                  </a>
+                  <a href={m.linkedin} aria-label={m.name + " on LinkedIn"} className="team-social-icon" target="_blank" rel="noopener noreferrer">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+                    </svg>
+                  </a>
+                  <a href={"mailto:" + m.email} aria-label={"Email " + m.name} className="team-social-icon">
+                    <Mail size={18} strokeWidth={1.8} />
+                  </a>
+                </div>
               </div>
             ))}
           </div>
