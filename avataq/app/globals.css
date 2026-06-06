@@ -684,7 +684,7 @@ html[data-theme="light"] .aqdrawer__themerow span{ color:rgba(0,0,0,0.6); }
 .team-card{text-align:left;border:1px solid var(--line);border-radius:12px;padding:24px;
   background:var(--bg-card);transition:transform .2s var(--ease),border-color .2s var(--ease);}
 .team-card:hover{transform:scale(1.02);border-color:rgba(26,23,222,0.55);}
-.team-photo{width:100%;aspect-ratio:1;border-radius:12px;background:var(--bg-card-2);
+.team-photo{width:100%;aspect-ratio:3/4;border-radius:12px;background:var(--bg-card-2);
   border:1px solid var(--line);display:flex;align-items:center;justify-content:center;
   color:var(--on-faint);margin-bottom:20px;overflow:hidden;position:relative;}
 .team-card .role{font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue);margin-top:6px;}

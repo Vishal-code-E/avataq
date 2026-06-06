@@ -11,10 +11,12 @@ const VALUES = [
   { Icon: Package, name: "Built to hand over", desc: "We leave you a system your own team can own, extend, and trust." },
 ];
 
-const TEAM = [
+type TeamMember = { name: string; title: string; photo: string; photoPosition?: string; instagram: string; linkedin: string; email: string };
+
+const TEAM: TeamMember[] = [
   { name: "E Sri Ram", title: "CEO", photo: "/team/vishal.png", instagram: "#", linkedin: "#", email: "sriram@avataq.in" },
   { name: "GV Santosh", title: "CTO", photo: "/team/santosh.png", instagram: "#", linkedin: "#", email: "santosh@avataq.in" },
-  { name: "I Sree Venkatanadh", title: "CMO", photo: "/team/venkatanadh.png", instagram: "#", linkedin: "#", email: "venkatanadh@avataq.in" },
+  { name: "I Sree Venkatanadh", title: "CMO", photo: "/team/venkatanadh.png", photoPosition: "center 65%", instagram: "#", linkedin: "#", email: "venkatanadh@avataq.in" },
   { name: "P Sai Pawan", title: "COO/CFO", photo: "/team/pawan.jpg", instagram: "#", linkedin: "#", email: "pawan@avataq.in" },
 ];
 
@@ -98,8 +100,8 @@ export default function AboutPage() {
           <div className="team-grid">
             {TEAM.map((m, i) => (
               <div className="team-card reveal" key={m.name} style={{ transitionDelay: i * 0.06 + "s" }}>
-                <div className="team-photo team-photo--circle">
-                  <Image src={m.photo} alt={m.name} width={200} height={200} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <div className="team-photo">
+                  <Image src={m.photo} alt={m.name} width={200} height={200} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: m.photoPosition ?? "center center" }} />
                 </div>
                 <h3 className="h3" style={{ fontSize: 18 }}>{m.name}</h3>
                 <div className="role">{m.title}</div>
