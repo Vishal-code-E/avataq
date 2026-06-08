@@ -11,7 +11,7 @@ export function Footer({ onNav }: { onNav: (p: string) => void }) {
           <div className="footer-col">
             <a className="nav-brand" href="#top" style={{ marginBottom: 20, display: "flex", alignItems: "center", gap: 10, fontWeight: 800, fontSize: 22, letterSpacing: "-0.04em", color: "#fff" }}
               onClick={(e) => { e.preventDefault(); onNav("Home"); }}>
-              <img src="/avataq-mark-white.webp" alt="" style={{ height: 24 }} />
+              <img src="/avataq-mark-white.webp" alt="" style={{ height: 24, width: "auto" }} />
               AVATAQ
             </a>
             <p className="body" style={{ maxWidth: 300, fontWeight: 500, color: "#fff" }}>{TAGLINE}</p>

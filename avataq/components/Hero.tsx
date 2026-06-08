@@ -39,7 +39,7 @@ function ProductCanvas({ compact }: { compact?: boolean }) {
     <div className="canvas" style={{ width: "100%", maxWidth: 1120, margin: "0 auto" }}>
       <div className="canvas-top">
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <img src="/avataq-mark-white.webp" alt="" style={{ height: 18 }} />
+          <img src="/avataq-mark-white.webp" alt="" style={{ height: 18, width: "auto" }} />
           <span style={{ fontWeight: 700, fontSize: 14, letterSpacing: "-0.03em" }}>AVATAQ</span>
           <span className="canvas-dot" style={{ marginLeft: 8 }}>Customer defect analytics</span>
         </div>
