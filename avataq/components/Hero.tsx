@@ -95,9 +95,9 @@ function HeroCTAs({ onNav }: { onNav: (p: string) => void }) {
 
 const HERO_COPY = {
   eyebrow: "AI-native systems studio",
-  h1a: (<>Your Business Runs on Hard Work. Imagine if It Also Ran on <em>Autopilot</em>.</>),
-  h1b: (<>Your Business Runs on Hard Work.<br />Imagine if It Also Ran on <em>Autopilot</em>.</>),
-  sub: "You started your business to build something great — not to spend your days chasing follow-ups, copying data between spreadsheets, or manually handling tasks that should have been automated years ago. AVATAQ brings AI-powered automation to businesses like yours, so you can focus on what you actually love doing.",
+  h1a: (<>Automate the Execution. <em>Own the Outcome.</em></>),
+  h1b: (<>Automate the Execution.<br /><em>Own the Outcome.</em></>),
+  sub: "AVATAQ builds AI agents and workflow systems that run your operations — so you can run your business.",
 };
 
 function HeroCanvas({ onNav }: { onNav: (p: string) => void }) {

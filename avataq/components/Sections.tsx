@@ -2,21 +2,36 @@
 import { useState, useEffect } from "react";
 import { Box, Workflow, BarChart3, Rocket, Plug2, ArrowRight, Quote } from "lucide-react";
 
-/* ② Logos marquee */
+/* ② Industries We Work With */
+const INDUSTRIES = [
+  "Retail & E-commerce",
+  "SaaS & Tech",
+  "Finance & Fintech",
+  "Healthcare & Wellness",
+  "Logistics & Operations",
+  "Professional Services",
+];
+
 export function Logos() {
-  const names = ["Northwind", "Vertex Labs", "Lumen", "Cobalt", "Atlas Foods", "Hexa", "Meridian"];
-  const row = [...names, ...names];
   return (
     <section className="section section--panel" style={{ paddingTop: 64, paddingBottom: 64 }}>
       <div className="wrap reveal">
         <p className="eyebrow eyebrow--muted no-rule" style={{ justifyContent: "center", textAlign: "center", display: "flex", marginBottom: 40 }}>
-          Trusted by founders, operators, and growing teams
+          Industries We Work With
         </p>
-      </div>
-      <div className="marquee">
-        <div className="marquee-track">
-          {row.map((n, i) => (
-            <span className="logo-slot" key={i}><span className="dot" />{n}</span>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 12, justifyContent: "center" }}>
+          {INDUSTRIES.map((name) => (
+            <span key={name} style={{
+              display: "inline-flex", alignItems: "center", gap: 8,
+              padding: "10px 20px", borderRadius: 8,
+              border: "1px solid var(--line-strong)",
+              background: "var(--surface)",
+              fontSize: 13, fontWeight: 600,
+              color: "var(--on-muted)", letterSpacing: "0.01em",
+            }}>
+              <span style={{ width: 5, height: 5, background: "var(--blue)", borderRadius: 1, transform: "rotate(45deg)", display: "inline-block", flexShrink: 0 }} />
+              {name}
+            </span>
           ))}
         </div>
       </div>
@@ -127,7 +142,7 @@ export function Services({ onNav }: { onNav: (p: string) => void }) {
 /* ④ Value Prop */
 const STATS = [
   { num: "4", suffix: "×", label: "Faster delivery", desc: "Shared kernel means we ship in weeks, not quarters." },
-  { num: "100", suffix: "+", label: "Systems shipped", desc: "Across fintech, commerce, and operations teams." },
+  { num: "5", suffix: "+", label: "Systems shipped", desc: "Across fintech, commerce, and operations teams." },
   { num: "99.9", suffix: "%", label: "Pipeline uptime", desc: "Observability built into every workflow we run." },
 ];
 
