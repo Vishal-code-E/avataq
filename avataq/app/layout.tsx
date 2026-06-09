@@ -14,9 +14,6 @@ export const metadata: Metadata = {
   title: "AVATAQ — The operating system for AI-native business",
   description:
     "An OS — not a stack of disconnected automation. Agents share a kernel: identity, policy, observability, and a graph of every workflow your business runs on.",
-  icons: {
-    icon: "/avataq-mark-black.webp",
-  },
 };
 
 export default function RootLayout({
