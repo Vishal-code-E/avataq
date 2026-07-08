@@ -5,7 +5,7 @@ import { PageLayout } from "../../components/PageLayout";
 import { PageHero } from "../../components/PageHero";
 
 const INFO = [
-  { Icon: Mail, label: "Email", value: "hello@avataq.com" },
+  { Icon: Mail, label: "Email", value: "pawan@avataq.in" },
   { Icon: Phone, label: "Phone", value: "+91 96740 29006 , +91 90598 82468" },
   { Icon: MapPin, label: "Location", value: "India · Remote" },
 ];

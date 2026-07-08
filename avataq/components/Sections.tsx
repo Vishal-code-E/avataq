@@ -13,25 +13,18 @@ const INDUSTRIES = [
 ];
 
 export function Logos() {
+  const row = [...INDUSTRIES, ...INDUSTRIES];
   return (
     <section className="section section--panel" style={{ paddingTop: 64, paddingBottom: 64 }}>
       <div className="wrap reveal">
         <p className="eyebrow eyebrow--muted no-rule" style={{ justifyContent: "center", textAlign: "center", display: "flex", marginBottom: 40 }}>
           Industries We Work With
         </p>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 12, justifyContent: "center" }}>
-          {INDUSTRIES.map((name) => (
-            <span key={name} style={{
-              display: "inline-flex", alignItems: "center", gap: 8,
-              padding: "10px 20px", borderRadius: 8,
-              border: "1px solid var(--line-strong)",
-              background: "var(--surface)",
-              fontSize: 13, fontWeight: 600,
-              color: "var(--on-muted)", letterSpacing: "0.01em",
-            }}>
-              <span style={{ width: 5, height: 5, background: "var(--blue)", borderRadius: 1, transform: "rotate(45deg)", display: "inline-block", flexShrink: 0 }} />
-              {name}
-            </span>
+      </div>
+      <div className="marquee">
+        <div className="marquee-track">
+          {row.map((name, i) => (
+            <span className="logo-slot" key={i}><span className="dot" />{name}</span>
           ))}
         </div>
       </div>
@@ -216,11 +209,11 @@ function CaseMedia({ kind }: { kind: string }) {
 }
 
 const CASES = [
-  { tag: "Local Services", title: "AI agent eliminated every missed after-hours lead for a home services company", metric: "40% more booked jobs · 12 hrs/week reclaimed", kind: "flow" },
-  { tag: "E-commerce", title: "E-commerce brand automated order-to-delivery communication end-to-end", metric: "3 hrs/day saved · +22% customer satisfaction", kind: "chart" },
+  { slug: "local-services-lead-agent", tag: "Local Services", title: "AI agent eliminated every missed after-hours lead for a home services company", metric: "40% more booked jobs · 12 hrs/week reclaimed", kind: "flow" },
+  { slug: "ecommerce-order-communication", tag: "E-commerce", title: "E-commerce brand automated order-to-delivery communication end-to-end", metric: "3 hrs/day saved · +22% customer satisfaction", kind: "chart" },
 ];
 
-export function CaseStudies({ onNav }: { onNav: (p: string) => void }) {
+export function CaseStudies() {
   return (
     <section className="section" id="case-studies">
       <div className="wrap">
@@ -230,8 +223,7 @@ export function CaseStudies({ onNav }: { onNav: (p: string) => void }) {
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
           {CASES.map((c) => (
-            <a className="case reveal" key={c.title} href="#"
-              onClick={(e) => { e.preventDefault(); onNav("Case Studies"); }}>
+            <a className="case reveal" key={c.title} href={`/case-studies/${c.slug}`}>
               <CaseMedia kind={c.kind} />
               <div className="case-body">
                 <span className="tag">{c.tag}</span>

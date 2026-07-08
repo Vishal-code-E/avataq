@@ -1,6 +1,11 @@
 "use client";
-import { ArrowRight, LayoutGrid, Workflow, Database, LineChart, Settings, Clock, Inbox, Sparkles } from "lucide-react";
+import {
+  ArrowRight, LayoutGrid, Workflow, Database, LineChart, Settings,
+  Clock, Inbox, Sparkles,
+  GitFork, Bell, CheckCircle   
+} from "lucide-react";
 import { SquareMosaic, HERO_MOSAIC_PATTERN } from "./SquareMosaic";
+
 
 function ProductCanvas({ compact }: { compact?: boolean }) {
   const railIcons = [LayoutGrid, Workflow, Database, LineChart, Settings];
@@ -48,34 +53,89 @@ function ProductCanvas({ compact }: { compact?: boolean }) {
           <span style={{ fontWeight: 600, fontSize: 12, color: "#fff", background: "var(--blue)", borderRadius: 6, padding: "6px 14px" }}>Share</span>
         </div>
       </div>
-      <div style={{ display: "flex", height: compact ? 300 : 380 }}>
-        <div style={{ width: 56, borderRight: "1px solid var(--line)", display: "flex",
-          flexDirection: "column", alignItems: "center", gap: 14, padding: "16px 0" }}>
+
+      {/* ── CHANGE 1: height  380 → 540 in non-compact ── */}
+      <div style={{ display: "flex", height: compact ? 300 : 490 }}>
+        <div style={{
+          width: 56, borderRight: "1px solid var(--line)", display: "flex",
+          flexDirection: "column", alignItems: "center", gap: 14, padding: "16px 0",
+        }}>
           {railIcons.map((Icon, i) => (
             <span key={i} style={{
               width: 34, height: 34, borderRadius: 8, display: "flex", alignItems: "center",
               justifyContent: "center", color: i === 1 ? "#fff" : "rgba(255,255,255,0.45)",
               background: i === 1 ? "var(--blue)" : "transparent",
-            }}><Icon size={18} /></span>
+            }}>
+              <Icon size={18} />
+            </span>
           ))}
         </div>
-        <div style={{ flex: 1, position: "relative", overflow: "hidden",
+
+        <div style={{
+          flex: 1, position: "relative", overflow: "hidden",
           backgroundImage: "radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px)",
-          backgroundSize: "22px 22px" }}>
+          backgroundSize: "22px 22px",
+        }}>
           <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}>
-            <path d="M170 86 C 270 86, 270 170, 360 170" stroke="rgba(124,123,255,0.55)" strokeWidth="1.5" strokeDasharray="5 5" fill="none" />
-            <path d="M500 170 C 590 170, 590 86, 680 86" stroke="rgba(124,123,255,0.55)" strokeWidth="1.5" strokeDasharray="5 5" fill="none" />
-            <path d="M430 204 L 430 268" stroke="rgba(124,123,255,0.55)" strokeWidth="1.5" strokeDasharray="5 5" fill="none" />
+
+            {/* ── ORIGINAL 3 paths — unchanged ── */}
+            <path d="M170 86 C 270 86, 270 170, 360 170"
+              stroke="rgba(124,123,255,0.55)" strokeWidth="1.5" strokeDasharray="5 5" fill="none" />
+            <path d="M500 170 C 590 170, 590 86, 680 86"
+              stroke="rgba(124,123,255,0.55)" strokeWidth="1.5" strokeDasharray="5 5" fill="none" />
+            <path d="M430 204 L 430 268"
+              stroke="rgba(124,123,255,0.55)" strokeWidth="1.5" strokeDasharray="5 5" fill="none" />
+
+            {/* ── CHANGE 2: 4 new paths, only shown when not compact ──
+                Flow:  AI Agent → Router → { AI Agent (reply) | Slack Alert | CRM Logger }
+
+                Coordinates:
+                  AI Agent bottom-center  ≈ (430, 324)   [left=332, same x pattern as original]
+                  Router top-center       ≈ (430, 360)
+                  Router bottom-center    ≈ (430, 416)
+                  AI Reply top-center     ≈ (148, 460)    [left=48, same as Daily Trigger]
+                  Slack top-center        ≈ (430, 460)    [left=332, same column as Router]
+                  CRM Logger top-center   ≈ (694, 460)    [left=620]
+            */}
+            {!compact && <>
+              {/* AI Agent → Router (straight down) */}
+              <path d="M430 324 L 430 360"
+                stroke="rgba(124,123,255,0.55)" strokeWidth="1.5" strokeDasharray="5 5" fill="none" />
+              {/* Router → AI Agent reply (curves left) */}
+              <path d="M430 416 C 430 440, 148 440, 148 460"
+                stroke="rgba(124,123,255,0.55)" strokeWidth="1.5" strokeDasharray="5 5" fill="none" />
+              {/* Router → Slack Alert (straight down) */}
+              <path d="M430 416 L 430 460"
+                stroke="rgba(124,123,255,0.55)" strokeWidth="1.5" strokeDasharray="5 5" fill="none" />
+              {/* Router → CRM Logger (curves right) */}
+              <path d="M430 416 C 430 440, 694 440, 694 460"
+                stroke="rgba(124,123,255,0.55)" strokeWidth="1.5" strokeDasharray="5 5" fill="none" />
+            </>}
           </svg>
-          {node("Daily Trigger", "09:00 AM", Clock, { left: 48, top: 68 })}
-          {node("Python", "PII redaction", Inbox, { left: 356, top: 148 })}
-          {node("Ingest", "App reviews", Inbox, { left: 660, top: 68 })}
-          {node("AI Agent", "Defect classifier", Sparkles, { left: 332, top: 268 }, true)}
+
+          {/* ── ORIGINAL 4 nodes — unchanged ── */}
+          {node("Daily Trigger", "09:00 AM",        Clock,    { left: 48,  top: 68  })}
+          {node("Python",        "PII redaction",    Inbox,    { left: 356, top: 148 })}
+          {node("Ingest",        "App reviews",      Inbox,    { left: 660, top: 68  })}
+          {node("AI Agent",      "Defect classifier",Sparkles, { left: 332, top: 268 }, true)}
+
+          {/* ── CHANGE 3: 4 new nodes, only shown when not compact ──
+              Layout mirrors original column logic:
+                left-col  = 48   (same as Daily Trigger)
+                center-col = 332  (same as Python / AI Agent)
+                right-col  = 620  (mirrors Ingest side)
+          */}
+          {!compact && node("Router",      "Severity split",    GitFork,      { left: 332, top: 360 })}
+          {!compact && node("AI Agent",    "Auto reply writer", Sparkles,     { left: 48,  top: 460 }, true)}
+          {!compact && node("Slack Alert", "Eng. team ping",    Bell,         { left: 332, top: 460 })}
+          {!compact && node("CRM Logger",  "Update ticket",     CheckCircle,  { left: 620, top: 460 })}
         </div>
       </div>
     </div>
   );
 }
+
+
 
 function HeroCTAs({ onNav }: { onNav: (p: string) => void }) {
   return (

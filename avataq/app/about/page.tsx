@@ -1,8 +1,10 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import { Layers, Activity, Shield, Package, ArrowRight, Mail } from "lucide-react";
 import { PageLayout } from "../../components/PageLayout";
 import { PageHero } from "../../components/PageHero";
+import { useTheme } from "../../hooks/useTheme";
 
 const VALUES = [
   { Icon: Layers, name: "Systems, not scripts", desc: "We build connected infrastructure that compounds — never disposable one-offs." },
@@ -28,6 +30,7 @@ const MILESTONES = [
 ];
 
 export default function AboutPage() {
+  const [theme] = useTheme();
   return (
     <PageLayout>
       <PageHero
@@ -57,10 +60,10 @@ export default function AboutPage() {
             <div className="visual-ph reveal">
               <div className="blueprint" />
               <Image
-                src="/avataq-mark-white.webp"
+                src={theme === "light" ? "/avataq-mark-black.webp" : "/avataq-mark-white.webp"}
                 alt="AVATAQ mark"
                 width={120}
-                height={120}
+                height={102}
                 style={{ opacity: 0.9, position: "relative", zIndex: 2 }}
               />
               <span className="ph-label">Brand mark · isometric &quot;A&quot;</span>
@@ -149,9 +152,9 @@ export default function AboutPage() {
           </p>
           <div style={{ marginTop: 36, display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
             <a className="btn btn--primary" href="/contact">Book a Demo</a>
-            <a className="btn btn--ghost" href="/case-studies" style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
+            <Link className="btn btn--ghost" href="/case-studies" style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
               View Our Work <ArrowRight size={18} />
-            </a>
+            </Link>
           </div>
         </div>
       </section>

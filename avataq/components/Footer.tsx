@@ -24,8 +24,14 @@ export function Footer({ onNav }: { onNav: (p: string) => void }) {
           </div>
           <div className="footer-col">
             <h4>Services</h4>
-            {["AI Agents", "Workflow Automation", "Data & Reporting Automation", "AI-Powered Customer Engagement", "Custom AI Integrations"].map((l) => (
-              <a key={l} href="#" onClick={(e) => e.preventDefault()}>{l}</a>
+            {[
+              ["AI Agents", "ai-systems"],
+              ["Workflow Automation", "automation"],
+              ["Data & Reporting Automation", "data"],
+              ["AI-Powered Customer Engagement", "growth"],
+              ["Custom AI Integrations", "custom-integrations"],
+            ].map(([l, id]) => (
+              <a key={l} href={`/services#${id}`}>{l}</a>
             ))}
           </div>
           <div className="footer-col">
@@ -49,9 +55,9 @@ export function Footer({ onNav }: { onNav: (p: string) => void }) {
 export function StickyCTA({ visible }: { visible: boolean }) {
   return (
     <div className={`sticky-cta${visible ? " show" : ""}`}>
-      <button className="btn btn--primary">
+      <a className="btn btn--primary" href="/contact">
         <Phone size={18} /> Book a Call
-      </button>
+      </a>
     </div>
   );
 }

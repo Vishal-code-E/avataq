@@ -34,10 +34,10 @@ const DD_ITEMS = {
     { icon: Briefcase, title: "Careers", desc: "Join a team that builds what matters" },
   ],
   "Case Studies": [
-    { icon: Cpu, title: "Technology & SaaS", desc: "Product-led brands built to scale" },
-    { icon: HeartPulse, title: "Healthcare & Wellness", desc: "Trust-first design for sensitive sectors" },
-    { icon: Landmark, title: "Finance & Fintech", desc: "Credibility and conversion in one" },
-    { icon: ShoppingBag, title: "Retail & E-commerce", desc: "Stores that engage and convert" },
+    { icon: Cpu, title: "Technology & SaaS", desc: "Product-led brands built to scale", industry: "saas" },
+    { icon: HeartPulse, title: "Healthcare & Wellness", desc: "Trust-first design for sensitive sectors", industry: "healthcare" },
+    { icon: Landmark, title: "Finance & Fintech", desc: "Credibility and conversion in one", industry: "finance" },
+    { icon: ShoppingBag, title: "Retail & E-commerce", desc: "Stores that engage and convert", industry: "ecommerce" },
   ],
   Resources: [
     { icon: BookMarked, title: "Guides & Playbooks", desc: "In-depth resources for modern teams" },
@@ -60,7 +60,7 @@ function DDItem({ icon: Icon, title, desc, onPick }: { icon: React.ElementType; 
   );
 }
 
-function renderDropdown(key: NavKey, go: (page: string) => void) {
+function renderDropdown(key: NavKey, go: (page: string, query?: string) => void) {
   if (key === "Services") {
     return (
       <div>
@@ -110,7 +110,7 @@ function renderDropdown(key: NavKey, go: (page: string) => void) {
           <p className="dd-label">Browse by industry</p>
           <div className="dd-list">
             {DD_ITEMS["Case Studies"].map((it) => (
-              <DDItem key={it.title} {...it} onPick={() => go("Case Studies")} />
+              <DDItem key={it.title} {...it} onPick={() => go("Case Studies", `industry=${it.industry}`)} />
             ))}
           </div>
         </div>
@@ -181,8 +181,8 @@ function renderDropdown(key: NavKey, go: (page: string) => void) {
         <div className="dd-direct">
           <p className="dd-direct__lbl">Or reach us directly:</p>
           <div className="dd-direct__row">
-            <a className="dd-direct__link" href="mailto:hello@avataq.com">
-              <Mail size={16} /> hello@avataq.com
+            <a className="dd-direct__link" href="mailto:pawan@avataq.in">
+              <Mail size={16} /> pawan@avataq.in
             </a>
             <a className="dd-direct__link" href="#" aria-label="LinkedIn">
               <ExternalLink size={16} />
@@ -218,7 +218,7 @@ function ThemeToggle({ theme, onTheme }: { theme: Theme; onTheme: (t: Theme) => 
 }
 
 interface NavbarProps {
-  onNav: (page: string) => void;
+  onNav: (page: string, query?: string) => void;
   theme: Theme;
   onTheme: (t: Theme) => void;
   onBurger: () => void;
@@ -269,7 +269,7 @@ export function Navbar({ onNav, theme, onTheme, onBurger }: NavbarProps) {
   const scheduleClose = () => {
     closeT.current = setTimeout(() => setOpen(null), 150);
   };
-  const go = (page: string) => { setOpen(null); onNav(page); };
+  const go = (page: string, query?: string) => { setOpen(null); onNav(page, query); };
 
   const mark = theme === "light" ? "/avataq-mark-black.webp" : "/avataq-mark-white.webp";
 
@@ -325,7 +325,7 @@ export function Navbar({ onNav, theme, onTheme, onBurger }: NavbarProps) {
 interface MobileMenuProps {
   open: boolean;
   onClose: () => void;
-  onNav: (page: string) => void;
+  onNav: (page: string, query?: string) => void;
   theme: Theme;
   onTheme: (t: Theme) => void;
 }
@@ -340,7 +340,7 @@ export function MobileMenu({ open, onClose, onNav, theme, onTheme }: MobileMenuP
 
   useEffect(() => { if (!open) setExp(null); }, [open]);
 
-  const pick = (page: string) => { onClose(); onNav(page); };
+  const pick = (page: string, query?: string) => { onClose(); onNav(page, query); };
   const mark = theme === "light" ? "/avataq-mark-black.webp" : "/avataq-mark-white.webp";
 
   return (
@@ -369,7 +369,11 @@ export function MobileMenu({ open, onClose, onNav, theme, onTheme }: MobileMenuP
                 <div className="aqacc__inner">
                   {items && items.length > 0
                     ? items.map((it) => (
-                        <button key={it.title} className="aqacc__item" onClick={() => pick(n)}>
+                        <button
+                          key={it.title}
+                          className="aqacc__item"
+                          onClick={() => pick(n, "industry" in it ? `industry=${it.industry}` : undefined)}
+                        >
                           <span className="aqacc__ic"><it.icon size={18} strokeWidth={1.8} /></span>
                           {it.title}
                         </button>

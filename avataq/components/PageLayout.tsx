@@ -43,10 +43,10 @@ export function PageLayout({ children }: PageLayoutProps) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const onNav = (page: string) => {
+  const onNav = (page: string, query?: string) => {
     setMenuOpen(false);
     const route = PAGE_ROUTES[page];
-    if (route) router.push(route);
+    if (route) router.push(query ? `${route}?${query}` : route);
   };
 
   return (

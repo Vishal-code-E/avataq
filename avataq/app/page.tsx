@@ -38,14 +38,14 @@ export default function HomePage() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const onNav = (page: string) => {
+  const onNav = (page: string, query?: string) => {
     setMenuOpen(false);
     if (page === "Home") {
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
     if (PAGE_ROUTES[page]) {
-      window.location.href = PAGE_ROUTES[page];
+      window.location.href = query ? `${PAGE_ROUTES[page]}?${query}` : PAGE_ROUTES[page];
     }
   };
 
@@ -60,7 +60,7 @@ export default function HomePage() {
         <ProblemStatement />
         <Services onNav={onNav} />
         <ValueProp />
-        <CaseStudies onNav={onNav} />
+        <CaseStudies />
         <Testimonials />
         <TechStack />
         <FinalCTA onNav={onNav} />
