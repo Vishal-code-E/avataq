@@ -24,8 +24,6 @@ export async function POST(request: Request) {
 
   const transporter = nodemailer.createTransport({
     service: "gmail",
-    // IPv6 egress to smtp.gmail.com is unreliable on some serverless hosts (Vercel included).
-    family: 4,
     auth: { user: gmailUser, pass: gmailAppPassword },
   });
 
