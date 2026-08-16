@@ -1,12 +1,13 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 
 const NOTIFY_EMAIL = "sriram@avataq.in";
 
 export async function POST(request: Request) {
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) {
-    console.error("RESEND_API_KEY is not set");
+  const gmailUser = process.env.GMAIL_USER;
+  const gmailAppPassword = process.env.GMAIL_APP_PASSWORD;
+  if (!gmailUser || !gmailAppPassword) {
+    console.error("GMAIL_USER or GMAIL_APP_PASSWORD is not set");
     return NextResponse.json({ error: "Email service not configured" }, { status: 500 });
   }
 
@@ -21,28 +22,31 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Name, email, and message are required" }, { status: 400 });
   }
 
-  const resend = new Resend(apiKey);
-
-  // onboarding@resend.dev only delivers to the Resend account owner's email until
-  // avataq.in is verified in Resend — swap the from address once that's done.
-  const { error } = await resend.emails.send({
-    from: "AVATAQ Website <onboarding@resend.dev>",
-    to: NOTIFY_EMAIL,
-    replyTo: email,
-    subject: `New contact form submission from ${name}`,
-    text: [
-      `Name: ${name}`,
-      `Email: ${email}`,
-      `Company: ${company || "—"}`,
-      `Service interest: ${service || "—"}`,
-      "",
-      "Message:",
-      message,
-    ].join("\n"),
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    // IPv6 egress to smtp.gmail.com is unreliable on some serverless hosts (Vercel included).
+    family: 4,
+    auth: { user: gmailUser, pass: gmailAppPassword },
   });
 
-  if (error) {
-    console.error("Resend error:", error);
+  try {
+    await transporter.sendMail({
+      from: `AVATAQ Website <${gmailUser}>`,
+      to: NOTIFY_EMAIL,
+      replyTo: email,
+      subject: `New contact form submission from ${name}`,
+      text: [
+        `Name: ${name}`,
+        `Email: ${email}`,
+        `Company: ${company || "—"}`,
+        `Service interest: ${service || "—"}`,
+        "",
+        "Message:",
+        message,
+      ].join("\n"),
+    });
+  } catch (err) {
+    console.error("Nodemailer error:", err);
     return NextResponse.json({ error: "Failed to send email" }, { status: 502 });
   }
 
