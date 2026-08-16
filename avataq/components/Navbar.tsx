@@ -2,9 +2,9 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import {
   ChevronDown, Menu, X, Sun, Moon,
-  Compass, Palette, Code, Megaphone, PenLine, TrendingUp,
+  Receipt, CreditCard, BarChart3, FileCheck2, ShieldCheck, RefreshCw,
   BookOpen, Target, Users, Briefcase,
-  Cpu, HeartPulse, Landmark, ShoppingBag,
+  Wallet,
   BookMarked, Newspaper, LayoutTemplate, PlayCircle,
   Calendar, Mail, ExternalLink, Share2, ArrowRight,
 } from "lucide-react";
@@ -20,12 +20,12 @@ const DD_WIDTH: Record<NavKey, number> = {
 
 const DD_ITEMS = {
   Services: [
-    { icon: Compass, title: "Strategy & Consulting", desc: "Align business goals with digital execution" },
-    { icon: Palette, title: "Brand Identity", desc: "Logos, systems, and visual language" },
-    { icon: Code, title: "Web Design & Development", desc: "Performant sites built to convert" },
-    { icon: Megaphone, title: "Digital Marketing", desc: "Campaigns that drive measurable growth" },
-    { icon: PenLine, title: "Content & Copywriting", desc: "Words that position and persuade" },
-    { icon: TrendingUp, title: "Analytics & Growth", desc: "Data-led decisions, clear ROI" },
+    { icon: Receipt, title: "Order-to-Cash & AR", desc: "Invoicing, collections, and cash application" },
+    { icon: CreditCard, title: "Procure-to-Pay & AP", desc: "Invoice capture, approvals, and payment execution" },
+    { icon: BarChart3, title: "Close & Reporting", desc: "Reconciliation and decision-ready reporting" },
+    { icon: FileCheck2, title: "Tax & Regulatory Filing", desc: "Classification, forecasting, and e-filing" },
+    { icon: ShieldCheck, title: "Audit, Fraud & Risk", desc: "Continuous transaction auditing and screening" },
+    { icon: RefreshCw, title: "Billing & Subscriptions", desc: "Recurring revenue and credit control" },
   ],
   About: [
     { icon: BookOpen, title: "Our Story", desc: "How AVATAQ came to be and what drives us" },
@@ -34,10 +34,10 @@ const DD_ITEMS = {
     { icon: Briefcase, title: "Careers", desc: "Join a team that builds what matters" },
   ],
   "Case Studies": [
-    { icon: Cpu, title: "Technology & SaaS", desc: "Product-led brands built to scale", industry: "saas" },
-    { icon: HeartPulse, title: "Healthcare & Wellness", desc: "Trust-first design for sensitive sectors", industry: "healthcare" },
-    { icon: Landmark, title: "Finance & Fintech", desc: "Credibility and conversion in one", industry: "finance" },
-    { icon: ShoppingBag, title: "Retail & E-commerce", desc: "Stores that engage and convert", industry: "ecommerce" },
+    { icon: Receipt, title: "Order-to-Cash & AR", desc: "40-person distributor, 60–80% less manual effort", hash: "ar-order-to-cash" },
+    { icon: CreditCard, title: "Procure-to-Pay & AP", desc: "Invoice processing cut from 3 days to <1", hash: "ap-procure-to-pay" },
+    { icon: BarChart3, title: "Close & Reconciliation", desc: "20+ bank accounts, ≈85% time saved", hash: "bank-reconciliation" },
+    { icon: Wallet, title: "Spend & Expense Management", desc: "35–50% less expense-processing time", hash: "expense-spend-management" },
   ],
   Resources: [
     { icon: BookMarked, title: "Guides & Playbooks", desc: "In-depth resources for modern teams" },
@@ -110,17 +110,17 @@ function renderDropdown(key: NavKey, go: (page: string, query?: string) => void)
           <p className="dd-label">Browse by industry</p>
           <div className="dd-list">
             {DD_ITEMS["Case Studies"].map((it) => (
-              <DDItem key={it.title} {...it} onPick={() => go("Case Studies", `industry=${it.industry}`)} />
+              <DDItem key={it.title} {...it} onPick={() => go("Case Studies", `#${it.hash}`)} />
             ))}
           </div>
         </div>
         <div>
           <p className="dd-label">Featured work</p>
           <div className="dd-feature">
-            <span className="dd-pill">Brand + Web</span>
-            <div className="dd-feature__t">How we scaled Nexora&apos;s brand 3× in 6 months</div>
-            <div className="dd-feature__metric">↑ 3× Brand Reach</div>
-            <button className="dd-feature__link" onClick={() => go("Case Studies")}>
+            <span className="dd-pill">Close & Reconciliation</span>
+            <div className="dd-feature__t">Reconciling 20+ bank accounts in minutes, not weeks</div>
+            <div className="dd-feature__metric">≈85% of reconciliation time saved</div>
+            <button className="dd-feature__link" onClick={() => go("Case Studies", "#bank-reconciliation")}>
               Read Case Study <ArrowRight size={14} />
             </button>
           </div>
@@ -332,13 +332,17 @@ interface MobileMenuProps {
 
 export function MobileMenu({ open, onClose, onNav, theme, onTheme }: MobileMenuProps) {
   const [exp, setExp] = useState<NavKey | null>(null);
+  const [prevOpen, setPrevOpen] = useState(open);
+
+  if (open !== prevOpen) {
+    setPrevOpen(open);
+    if (!open) setExp(null);
+  }
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [open]);
-
-  useEffect(() => { if (!open) setExp(null); }, [open]);
 
   const pick = (page: string, query?: string) => { onClose(); onNav(page, query); };
   const mark = theme === "light" ? "/avataq-mark-black.webp" : "/avataq-mark-white.webp";
@@ -372,7 +376,7 @@ export function MobileMenu({ open, onClose, onNav, theme, onTheme }: MobileMenuP
                         <button
                           key={it.title}
                           className="aqacc__item"
-                          onClick={() => pick(n, "industry" in it ? `industry=${it.industry}` : undefined)}
+                          onClick={() => pick(n, "hash" in it ? `#${it.hash}` : undefined)}
                         >
                           <span className="aqacc__ic"><it.icon size={18} strokeWidth={1.8} /></span>
                           {it.title}

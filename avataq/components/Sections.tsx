@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Box, Workflow, BarChart3, Rocket, Plug2, ArrowRight, Quote } from "lucide-react";
+import { Receipt, CreditCard, BarChart3, FileCheck2, ShieldCheck, RefreshCw, ArrowRight, Quote } from "lucide-react";
 
 /* ② Industries We Work With */
 const INDUSTRIES = [
@@ -90,13 +90,23 @@ export function ProblemStatement() {
   );
 }
 
-/* ③ Services */
+/* ③ Services — curated highlights (6 of 9 financial functions). Full set lives on /services. */
 const SERVICES = [
-  { icon: Box, title: "AI Agents", desc: "Meet your new always-on team member. Our AI agents handle customer queries, qualify leads, process requests, and take action — all without needing a coffee break or a salary increase." },
-  { icon: Workflow, title: "Workflow Automation", desc: "Stop duct-taping your tools together. We build end-to-end automated workflows that connect your CRM, your inbox, your calendar, and your operations into one seamless system that just works." },
-  { icon: BarChart3, title: "Data & Reporting Automation", desc: "Stop spending your Mondays building reports manually. We automate your data collection, transformation, and reporting so you walk in each morning with the numbers you need, ready and waiting." },
-  { icon: Rocket, title: "AI-Powered Customer Engagement", desc: "Respond to every customer instantly — at 2 AM on a Sunday, if that's when they reach out. Personalised, intelligent, and always on-brand, without you being on call." },
-  { icon: Plug2, title: "Custom AI Integrations", desc: "Already using tools you love? Good. We build custom integrations that make them smarter — connecting platforms like Shopify, HubSpot, Notion, Slack, Gmail, and dozens more into a unified, automated system." },
+  { icon: Receipt, title: "Order-to-Cash & Accounts Receivable", desc: "Autonomous agents that manage invoicing, collections, and cash application to accelerate inflow and cut manual chasing." },
+  { icon: CreditCard, title: "Procure-to-Pay & Accounts Payable", desc: "End-to-end automation of invoice capture, approval routing, and payment execution — no manual re-keying, no chasing approvers." },
+  { icon: BarChart3, title: "Financial Close & Reporting", desc: "Agents that shorten the close cycle and turn raw ledger data into decision-ready P&L, balance sheet, and cash-flow reporting." },
+  { icon: FileCheck2, title: "Tax & Regulatory Filing", desc: "Fine-tuned agents that keep global tax obligations accurate, current, and filed on time — across every jurisdiction you operate in." },
+  { icon: ShieldCheck, title: "Audit, Fraud & Risk Mitigation", desc: "Continuous, 100%-coverage auditing that replaces monthly sampling with always-on oversight over every transaction." },
+  { icon: RefreshCw, title: "Billing, Subscriptions & Credit Control", desc: "Recurring revenue and collections automation built for B2B SaaS and subscription models, from proration to revenue recognition." },
+];
+
+/* LEGACY — pre-pivot, all-industries services. Not rendered. Parked for later. */
+export const LEGACY_HOME_SERVICES = [
+  { title: "AI Agents" },
+  { title: "Workflow Automation" },
+  { title: "Data & Reporting Automation" },
+  { title: "AI-Powered Customer Engagement" },
+  { title: "Custom AI Integrations" },
 ];
 
 export function Services({ onNav }: { onNav: (p: string) => void }) {
@@ -104,9 +114,9 @@ export function Services({ onNav }: { onNav: (p: string) => void }) {
     <section className="section" id="services">
       <div className="wrap">
         <div className="sec-head reveal">
-          <p className="eyebrow">What we do</p>
-          <h2 className="h2">AI Agents and Workflow Automation, <em>Built Around Your Business</em>.</h2>
-          <p className="lead">AVATAQ doesn&apos;t sell generic software. We build intelligent automation systems that plug directly into your existing workflow — no ripping out what works, just making it work a whole lot better.</p>
+          <p className="eyebrow">What we automate</p>
+          <h2 className="h2">Full-Stack Financial Automation, <em>Built Around Your Books</em>.</h2>
+          <p className="lead">AVATAQ builds autonomous agents that run your finance and compliance operations end-to-end — from invoicing to audit-ready reporting. Here&apos;s where we start.</p>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24, marginTop: 56 }} className="svc-grid">
           {SERVICES.map((s, i) => (
@@ -124,7 +134,7 @@ export function Services({ onNav }: { onNav: (p: string) => void }) {
         <div className="reveal" style={{ marginTop: 48, display: "flex", justifyContent: "center" }}>
           <a className="txtlink" href="#" style={{ fontSize: 15 }}
             onClick={(e) => { e.preventDefault(); onNav("Services"); }}>
-            See What&apos;s Possible for Your Business <ArrowRight size={17} />
+            View All Financial Services <ArrowRight size={17} />
           </a>
         </div>
       </div>
@@ -208,9 +218,15 @@ function CaseMedia({ kind }: { kind: string }) {
   );
 }
 
+/* LEGACY — pre-pivot, all-industries homepage case studies. Not rendered. Parked for later. */
+export const LEGACY_HOME_CASES = [
+  { slug: "local-services-lead-agent", tag: "Local Services", title: "AI agent eliminated every missed after-hours lead for a home services company", metric: "40% more booked jobs · 12 hrs/week reclaimed" },
+  { slug: "ecommerce-order-communication", tag: "E-commerce", title: "E-commerce brand automated order-to-delivery communication end-to-end", metric: "3 hrs/day saved · +22% customer satisfaction" },
+];
+
 const CASES = [
-  { slug: "local-services-lead-agent", tag: "Local Services", title: "AI agent eliminated every missed after-hours lead for a home services company", metric: "40% more booked jobs · 12 hrs/week reclaimed", kind: "flow" },
-  { slug: "ecommerce-order-communication", tag: "E-commerce", title: "E-commerce brand automated order-to-delivery communication end-to-end", metric: "3 hrs/day saved · +22% customer satisfaction", kind: "chart" },
+  { anchor: "ar-order-to-cash", tag: "Order-to-Cash & AR", title: "How a 40-person distributor stopped chasing its own money", metric: "60–80% less manual invoicing & collections effort", kind: "flow" },
+  { anchor: "bank-reconciliation", tag: "Close & Reconciliation", title: "Reconciling 20+ bank accounts in minutes, not weeks", metric: "≈85% of reconciliation time saved", kind: "chart" },
 ];
 
 export function CaseStudies() {
@@ -219,11 +235,11 @@ export function CaseStudies() {
       <div className="wrap">
         <div className="sec-head reveal" style={{ marginBottom: 56 }}>
           <p className="eyebrow">Selected work</p>
-          <h2 className="h2">Real Businesses. <em>Real Results.</em></h2>
+          <h2 className="h2">Real Finance Teams. <em>Real Results.</em></h2>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
           {CASES.map((c) => (
-            <a className="case reveal" key={c.title} href={`/case-studies/${c.slug}`}>
+            <a className="case reveal" key={c.title} href={`/case-studies#${c.anchor}`}>
               <CaseMedia kind={c.kind} />
               <div className="case-body">
                 <span className="tag">{c.tag}</span>

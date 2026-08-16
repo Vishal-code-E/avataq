@@ -25,11 +25,12 @@ export function Footer({ onNav }: { onNav: (p: string) => void }) {
           <div className="footer-col">
             <h4>Services</h4>
             {[
-              ["AI Agents", "ai-systems"],
-              ["Workflow Automation", "automation"],
-              ["Data & Reporting Automation", "data"],
-              ["AI-Powered Customer Engagement", "growth"],
-              ["Custom AI Integrations", "custom-integrations"],
+              ["Order-to-Cash & AR", "ar-o2c"],
+              ["Procure-to-Pay & AP", "ap-p2p"],
+              ["Close & Reporting", "close-reporting"],
+              ["Tax & Regulatory Filing", "tax-regulatory"],
+              ["Audit, Fraud & Risk", "audit-fraud-risk"],
+              ["Billing & Subscriptions", "billing-subscriptions"],
             ].map(([l, id]) => (
               <a key={l} href={`/services#${id}`}>{l}</a>
             ))}

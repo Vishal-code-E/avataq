@@ -45,7 +45,8 @@ export default function HomePage() {
       return;
     }
     if (PAGE_ROUTES[page]) {
-      window.location.href = query ? `${PAGE_ROUTES[page]}?${query}` : PAGE_ROUTES[page];
+      const route = PAGE_ROUTES[page];
+      window.location.href = !query ? route : query.startsWith("#") ? `${route}${query}` : `${route}?${query}`;
     }
   };
 

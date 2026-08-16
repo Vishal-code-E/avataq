@@ -1,95 +1,163 @@
 "use client";
 import { useState, useEffect } from "react";
 import {
-  Box, Workflow, BarChart3, Rocket, Plug2,
-  Check, ArrowRight,
+  Receipt, CreditCard, Wallet, Users, BarChart3, FileCheck2,
+  ShieldCheck, Handshake, RefreshCw, Check, ArrowRight,
 } from "lucide-react";
 import { PageLayout } from "../../components/PageLayout";
 import { PageHero } from "../../components/PageHero";
 
+/**
+ * Financial Services — live service catalog.
+ * Sourced from the AVATAQ Financial Services catalog (9 sub-verticals).
+ * Ids marked `featured: true` are the curated set surfaced on the homepage
+ * and in the Navbar mega-dropdown; all 9 render in full here.
+ */
 const SERVICES = [
   {
-    id: "ai-systems",
-    Icon: Box,
-    name: "AI Agents",
-    desc: "Meet your new always-on team member. Our AI agents handle customer queries, qualify leads, process requests, and take action — all without needing a coffee break or a salary increase.",
+    id: "ar-o2c",
+    Icon: Receipt,
+    name: "Order-to-Cash & Accounts Receivable",
+    featured: true,
+    desc: "Autonomous agents that manage invoicing, collections, and cash application to accelerate inflow and cut manual chasing.",
     deliverables: [
-      "Agent architecture & kernel design",
-      "Retrieval and memory layers",
-      "Evaluation & guardrail harness",
-      "Human-in-the-loop review flows",
-      "Cost & latency budgeting",
-      "Production monitoring",
+      "Agentic invoicing — sync, validate, e-invoice, track delivery & payment",
+      "Collections agents with behavior-based reminder cadences",
+      "Cash application & reconciliation against bank feeds",
+      "AR analytics copilot — DSO, aging, and cash forecasting",
     ],
-    tech: ["Python", "TypeScript", "Postgres", "Vector DB", "LLM APIs"],
+    tech: ["NetSuite", "QuickBooks", "LLM Agents", "API Integration"],
   },
   {
-    id: "automation",
-    Icon: Workflow,
-    name: "Workflow Automation",
-    desc: "Stop duct-taping your tools together. We build end-to-end automated workflows that connect your CRM, your inbox, your calendar, and your operations into one seamless system that just works.",
+    id: "ap-p2p",
+    Icon: CreditCard,
+    name: "Procure-to-Pay & Accounts Payable",
+    featured: true,
+    desc: "End-to-end automation of invoice capture, approval routing, and payment execution.",
     deliverables: [
-      "Workflow discovery & mapping",
-      "Event-driven orchestration",
-      "Integration & API plumbing",
-      "Failure handling & retries",
-      "Audit logging",
-      "Run-level observability",
+      "Touchless invoice processing from PDFs & emails",
+      "PO and goods-receipt matching",
+      "Rules-based approval routing & approver escalation",
+      "Payment orchestration with budget checks & ERP sync",
     ],
-    tech: ["Temporal", "Webhooks", "Queues", "REST / GraphQL"],
+    tech: ["SAP", "Tally", "RPA", "ERP Sync"],
   },
   {
-    id: "data",
+    id: "expense-spend",
+    Icon: Wallet,
+    name: "Spend & Expense Management",
+    featured: false,
+    desc: "Agent-driven filing, policy enforcement, and reconciliation for corporate spend.",
+    deliverables: [
+      "Employee expense filing agents from receipts & emails",
+      "Policy compliance checks against limits & approval matrices",
+      "Card & wallet reconciliation to the general ledger",
+      "Real-time spend dashboards by department",
+    ],
+    tech: ["Zoho Expense", "Stripe", "Policy Engine", "Dashboards"],
+  },
+  {
+    id: "payroll-hr",
+    Icon: Users,
+    name: "Payroll, Benefits & HR-Linked Finance",
+    featured: false,
+    desc: "Governed AI agents that resolve payroll exceptions across HR, banking, and ERP systems.",
+    deliverables: [
+      "Payroll exception detection between HR, timesheets & payroll runs",
+      "Benefits & deductions workflows with GL posting",
+      "Payslip generation & statutory filing reminders",
+    ],
+    tech: ["Zoho Payroll", "ERP Sync", "Compliance Rules"],
+  },
+  {
+    id: "close-reporting",
     Icon: BarChart3,
-    name: "Data & Reporting Automation",
-    desc: "Stop spending your Mondays building reports manually. We automate your data collection, transformation, and reporting so you walk in each morning with the numbers you need, ready and waiting.",
+    name: "Financial Close, Reconciliation & Reporting",
+    featured: true,
+    desc: "Agents that shorten the close cycle and turn raw ledger data into decision-ready reporting.",
     deliverables: [
-      "Pipeline architecture",
-      "Warehouse & semantic modeling",
-      "Real-time dashboards",
-      "Data quality monitoring",
-      "Self-serve metrics",
-      "Governance & access",
+      "Multi-ledger self-reconciliation across bank, card & ERP feeds",
+      "Period close orchestration with checklists & owner reminders",
+      "Automated P&L, balance sheet & cash-flow reporting",
+      "Depreciation tracking & predictive cash-flow analytics",
     ],
-    tech: ["dbt", "Snowflake", "Airflow", "Metabase"],
+    tech: ["NetSuite", "Power BI", "FP&A Copilot", "GAAP / IFRS Rules"],
   },
   {
-    id: "growth",
-    Icon: Rocket,
-    name: "AI-Powered Customer Engagement",
-    desc: "Respond to every customer instantly — at 2 AM on a Sunday, if that's when they reach out. Personalised, intelligent, and always on-brand, without you being on call.",
+    id: "tax-regulatory",
+    Icon: FileCheck2,
+    name: "Tax & Regulatory Filing Automation",
+    featured: true,
+    desc: "Fine-tuned LLM agents that keep global tax obligations accurate, current, and filed on time.",
     deliverables: [
-      "Event taxonomy & tracking",
-      "Experimentation platform",
-      "Funnel & retention analysis",
-      "Lifecycle automation",
-      "Attribution modeling",
-      "Growth dashboards",
+      "Autonomous tax classification by jurisdiction",
+      "Real-time tax liability forecasting from live revenue & expense",
+      "Automated e-filing pipelines to government portals",
+      "Cross-border VAT, GST & tariff compliance mapping",
     ],
-    tech: ["Segment", "PostHog", "Feature flags", "A/B testing"],
+    tech: ["Fine-Tuned LLMs", "Secure API Filing", "GST / VAT Engine"],
   },
   {
-    id: "custom-integrations",
-    Icon: Plug2,
-    name: "Custom AI Integrations",
-    desc: "Already using tools you love? Good. We build custom integrations that make them smarter — connecting platforms like Shopify, HubSpot, Notion, Slack, Gmail, and dozens more into a unified, automated system.",
+    id: "audit-fraud-risk",
+    Icon: ShieldCheck,
+    name: "Audit, Fraud & Risk Mitigation",
+    featured: true,
+    desc: "Continuous, 100%-coverage auditing that replaces monthly sampling with always-on oversight.",
     deliverables: [
-      "Integration architecture & mapping",
-      "Webhook & event orchestration",
-      "Data transformation pipelines",
-      "Authentication & security",
-      "Error handling & retries",
-      "Integration monitoring",
+      "Continuous transaction auditing in real time",
+      "Anomalous spend & duplicate-payment detection",
+      "AI-generated audit trails for external review",
+      "KYC / KYB compliance screening before onboarding",
     ],
-    tech: ["Shopify", "HubSpot", "Notion", "Slack", "Gmail", "REST APIs"],
+    tech: ["Sanctions / KYC APIs", "Anomaly Detection", "Audit Logging"],
+  },
+  {
+    id: "procurement-vendor",
+    Icon: Handshake,
+    name: "Procurement & Vendor Onboarding",
+    featured: false,
+    desc: "Agents that accelerate vendor evaluation, onboarding, and contract lifecycle management.",
+    deliverables: [
+      "Vendor onboarding with document & compliance checks",
+      "RFP / RFQ analysis and shortlist scoring",
+      "Contract lifecycle & e-sign workflows with renewal reminders",
+    ],
+    tech: ["DocuSign", "ERP Sync", "Vendor Risk Scoring"],
+  },
+  {
+    id: "billing-subscriptions",
+    Icon: RefreshCw,
+    name: "Billing, Subscriptions & Credit Control",
+    featured: true,
+    desc: "Recurring revenue and collections automation built for B2B SaaS and subscription models.",
+    deliverables: [
+      "Subscription billing — plan changes, renewals & proration",
+      "Multi-provider invoicing automation",
+      "ASC 606 revenue recognition workflows",
+      "Risk-based credit control & collections journeys",
+    ],
+    tech: ["Stripe", "Chargebee", "ASC 606 Engine"],
   },
 ];
 
+/**
+ * LEGACY — the pre-pivot, all-industries service lineup.
+ * Not rendered anywhere. Parked here so it's a one-line swap to bring
+ * back when AVATAQ expands beyond financial services again.
+ */
+export const LEGACY_SERVICES = [
+  { id: "ai-systems", name: "AI Agents" },
+  { id: "automation", name: "Workflow Automation" },
+  { id: "data", name: "Data & Reporting Automation" },
+  { id: "growth", name: "AI-Powered Customer Engagement" },
+  { id: "custom-integrations", name: "Custom AI Integrations" },
+];
+
 const PROCESS = [
-  { step: "01", name: "Discover", desc: "We start with a deep-dive into your business — your workflows, your bottlenecks, your goals. No generic templates. We map exactly where automation creates the most leverage for you specifically." },
-  { step: "02", name: "Design", desc: "We architect the kernel and the agent graph, with budgets and guardrails up front." },
-  { step: "03", name: "Build", desc: "Our team gets to work. Using tools like n8n, Make, and custom AI agents built on OpenAI and other leading models, we build your automation system with precision. You review. We refine. Until it's exactly right." },
-  { step: "04", name: "Deploy", desc: "We go live. From day one, your business starts running leaner, faster, and smarter. We monitor the system, fix anything that needs fixing, and make sure you're confident using everything we've built." },
+  { step: "01", name: "Discover", desc: "We start with a deep-dive into your finance stack — your ledgers, your approval chains, your close calendar. No generic templates. We map exactly where agentic automation creates the most leverage for your books specifically." },
+  { step: "02", name: "Design", desc: "We architect the agent graph — data connectors, approval logic, and audit trails — with compliance guardrails and budgets defined up front." },
+  { step: "03", name: "Build", desc: "Our team gets to work, connecting your ERP, banking feeds, and tax systems to purpose-built AI agents. You review. We refine. Until every posting reconciles." },
+  { step: "04", name: "Deploy", desc: "We go live. From day one, your close cycle gets shorter and your audit trail gets deeper. We monitor every agent, fix anything that needs fixing, and make sure your team trusts what we've built." },
 ];
 
 function ServiceBlock({ s }: { s: typeof SERVICES[0] }) {
@@ -147,9 +215,9 @@ export default function ServicesPage() {
     <PageLayout>
       <PageHero
         breadcrumb={["Home", "Services"]}
-        eyebrow="Services"
-        title={<>Our <em>Services</em></>}
-        sub="Four disciplines, engineered as one system. We don't sell point tools — we build the connected infrastructure your business runs on."
+        eyebrow="Financial Services"
+        title={<>AI Agents for <em>Financial Operations</em></>}
+        sub="Nine functions, one agentic system — from invoicing and tax filing to fraud detection and audit-ready reporting. We don't sell point tools — we build the connected infrastructure your finance team runs on."
       />
 
       <section className="section">
@@ -179,7 +247,7 @@ export default function ServicesPage() {
           <div className="sec-head reveal">
             <p className="eyebrow">How we work</p>
             <h2 className="h2">Simple by Design. <em>Powerful in Practice.</em></h2>
-            <p className="lead">Most business owners expect automation to be complicated. We&apos;ve designed the entire experience to be the opposite.</p>
+            <p className="lead">Most finance teams expect automation to be complicated. We&apos;ve designed the entire experience to be the opposite.</p>
           </div>
           <div className="timeline">
             {PROCESS.map((p, i) => (

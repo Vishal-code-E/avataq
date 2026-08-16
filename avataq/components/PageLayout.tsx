@@ -46,7 +46,9 @@ export function PageLayout({ children }: PageLayoutProps) {
   const onNav = (page: string, query?: string) => {
     setMenuOpen(false);
     const route = PAGE_ROUTES[page];
-    if (route) router.push(query ? `${route}?${query}` : route);
+    if (!route) return;
+    if (!query) { router.push(route); return; }
+    router.push(query.startsWith("#") ? `${route}${query}` : `${route}?${query}`);
   };
 
   return (
