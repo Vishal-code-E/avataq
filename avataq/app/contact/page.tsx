@@ -52,6 +52,8 @@ function FaqItem({ q, a }: { q: string; a: string }) {
 
 export default function ContactPage() {
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState(false);
 
   return (
     <PageLayout>
@@ -67,24 +69,52 @@ export default function ContactPage() {
       <section className="section">
         <div className="wrap">
           <div className="contact-grid">
-            <form onSubmit={(e) => { e.preventDefault(); setSent(true); }}>
+            <form
+              onSubmit={async (e) => {
+                e.preventDefault();
+                const form = e.currentTarget;
+                const data = new FormData(form);
+                setSending(true);
+                setError(false);
+                try {
+                  const res = await fetch("/api/contact", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                      name: data.get("name"),
+                      email: data.get("email"),
+                      company: data.get("company"),
+                      service: data.get("service"),
+                      message: data.get("msg"),
+                    }),
+                  });
+                  if (!res.ok) throw new Error("Request failed");
+                  setSent(true);
+                  form.reset();
+                } catch {
+                  setError(true);
+                } finally {
+                  setSending(false);
+                }
+              }}
+            >
               <div className="form-row">
                 <div>
                   <label className="field-label" htmlFor="name">Name</label>
-                  <input className="field" id="name" placeholder="Jane Doe" required />
+                  <input className="field" id="name" name="name" placeholder="Jane Doe" required />
                 </div>
                 <div>
                   <label className="field-label" htmlFor="email">Email</label>
-                  <input className="field" id="email" type="email" placeholder="jane@company.com" required />
+                  <input className="field" id="email" name="email" type="email" placeholder="jane@company.com" required />
                 </div>
               </div>
               <div style={{ marginTop: 20 }}>
                 <label className="field-label" htmlFor="company">Company</label>
-                <input className="field" id="company" placeholder="Company name" />
+                <input className="field" id="company" name="company" placeholder="Company name" />
               </div>
               <div style={{ marginTop: 20 }}>
                 <label className="field-label" htmlFor="service">Service interest</label>
-                <select className="field" id="service" defaultValue="">
+                <select className="field" id="service" name="service" defaultValue="">
                   <option value="" disabled>Select a service…</option>
                   <option>AI Systems</option>
                   <option>Automation</option>
@@ -95,14 +125,19 @@ export default function ContactPage() {
               </div>
               <div style={{ marginTop: 20 }}>
                 <label className="field-label" htmlFor="msg">Message</label>
-                <textarea className="field" id="msg" placeholder="What are you trying to build?" required />
+                <textarea className="field" id="msg" name="msg" placeholder="What are you trying to build?" required />
               </div>
-              <button className="btn btn--primary" type="submit" style={{ width: "100%", marginTop: 24 }}>
-                {sent ? "Message sent — talk soon" : "Send Message"}
+              <button className="btn btn--primary" type="submit" disabled={sending} style={{ width: "100%", marginTop: 24 }}>
+                {sending ? "Sending…" : sent ? "Message sent — talk soon" : "Send Message"}
               </button>
               {sent && (
                 <p className="body" style={{ marginTop: 14, color: "var(--blue)" }}>
                   Thanks — we&apos;ll be in touch within 24 hours.
+                </p>
+              )}
+              {error && (
+                <p className="body" style={{ marginTop: 14, color: "#e5484d" }}>
+                  Something went wrong sending your message — please try again or email us directly.
                 </p>
               )}
             </form>
