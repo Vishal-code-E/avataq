@@ -201,19 +201,30 @@ function renderDropdown(key: NavKey, go: (page: string, query?: string) => void)
 function ThemeToggle({ theme, onTheme }: { theme: Theme; onTheme: (t: Theme) => void }) {
   const light = theme === "light";
   return (
-    <span className="theme-switch" title="Toggle light / dark">
+    <div
+      className="theme-switch inline-flex items-center gap-2 h-8 text-white/60 light:text-black/[55%]"
+      title="Toggle light / dark"
+    >
       {light ? <Sun size={16} /> : <Moon size={16} />}
-      <label className="aq-toggle aq-toggle--sm">
-        <input
-          className="aq-toggle__input"
-          type="checkbox"
-          checked={light}
-          onChange={(e) => onTheme(e.target.checked ? "light" : "dark")}
-          aria-label="Toggle light mode"
+      <button
+        type="button"
+        role="switch"
+        aria-checked={light}
+        aria-label="Toggle light mode"
+        onClick={() => onTheme(light ? "dark" : "light")}
+        style={{ WebkitTapHighlightColor: "transparent" }}
+        className={`relative shrink-0 w-[32px] h-[18px] rounded-full border-none p-0 cursor-pointer
+          transition-colors duration-200 ease-out
+          focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue focus-visible:outline-offset-2
+          ${light ? "bg-blue" : "bg-brand-slate"}`}
+      >
+        <span
+          className={`absolute inset-y-0 my-auto w-[14px] h-[14px] rounded-full bg-white
+            shadow-[0_1px_4px_rgba(0,0,0,0.18)] transition-[left] duration-200 ease-out
+            ${light ? "left-[16px]" : "left-[2px]"}`}
         />
-        <span className="aq-toggle__track"><span className="aq-toggle__thumb" /></span>
-      </label>
-    </span>
+      </button>
+    </div>
   );
 }
 
