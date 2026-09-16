@@ -198,11 +198,11 @@ function renderDropdown(key: NavKey, go: (page: string, query?: string) => void)
   return null;
 }
 
-function ThemeToggle({ theme, onTheme }: { theme: Theme; onTheme: (t: Theme) => void }) {
+function ThemeToggle({ theme, onTheme, hideOnMobile }: { theme: Theme; onTheme: (t: Theme) => void; hideOnMobile?: boolean }) {
   const light = theme === "light";
   return (
     <div
-      className="theme-switch inline-flex items-center gap-2 h-8 text-white/60 light:text-black/[55%]"
+      className={`theme-switch inline-flex items-center gap-2 h-8 text-white/60 light:text-black/[55%]${hideOnMobile ? " max-[768px]:hidden" : ""}`}
       title="Toggle light / dark"
     >
       {light ? <Sun size={16} /> : <Moon size={16} />}
@@ -311,7 +311,7 @@ export function Navbar({ onNav, theme, onTheme, onBurger }: NavbarProps) {
 
         <div className="aqnav__right">
           <button className="aqnav__talk" onClick={() => onNav("Contact")}>Talk to us</button>
-          <ThemeToggle theme={theme} onTheme={onTheme} />
+          <ThemeToggle theme={theme} onTheme={onTheme} hideOnMobile />
           <button className="aqnav__demo" onClick={() => onNav("Contact")}>Book a Demo</button>
           <button className="aqnav__burger" aria-label="Open menu" onClick={onBurger}>
             <Menu size={24} />

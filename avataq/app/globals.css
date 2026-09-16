@@ -370,7 +370,7 @@ html[data-theme="light"] .aqnav__dd{ box-shadow:0 16px 48px rgba(0,0,0,0.12); }
 .aqdrawer__cta:active{ @apply scale-[.99]; }
 
 @media(max-width:768px){
-  .aqnav__links,.aqnav__talk,.aqnav .theme-switch,.aqnav__demo{ @apply hidden; }
+  .aqnav__links,.aqnav__talk,.aqnav__demo{ @apply hidden; }
   .aqnav__burger{ @apply flex; }
 }
 @media(min-width:769px){ .aqdrawer{ @apply hidden; } }
